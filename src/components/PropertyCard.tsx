@@ -100,7 +100,7 @@ const PropertyCard = ({
           
           <div className="flex items-end justify-between mt-2">
             <div>
-              <p className="text-coastal-600 font-bold text-xl">${price.toLocaleString()}</p>
+              <p className="text-coastal-600 font-bold text-xl">{price.toLocaleString()} €</p>
             </div>
             <Button variant="outline" className="text-coastal-600 border-coastal-600 hover:bg-coastal-50">
               Ver Detalles
