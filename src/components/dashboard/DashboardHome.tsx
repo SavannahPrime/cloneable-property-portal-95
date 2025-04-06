@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building, Users, Eye, Star, Upload, Trash2, Edit, Save } from "lucide-react";
@@ -12,7 +11,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  DialogClose
+  DialogClose,
+  DialogTrigger
 } from "@/components/ui/dialog";
 
 const initialProperties = [
@@ -88,7 +88,6 @@ const DashboardHome = () => {
   const [headerImage, setHeaderImage] = useState('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2075&q=80');
   const [headerImagePreview, setHeaderImagePreview] = useState(headerImage);
 
-  // Gestión de estadísticas
   const handleStatsChange = (category, field, value) => {
     setEditedStats(prev => ({
       ...prev,
@@ -108,7 +107,6 @@ const DashboardHome = () => {
     });
   };
 
-  // Gestión de propiedades más visitadas
   const handleEditProperty = (property) => {
     setEditingProperty(property);
     setPropertyFormData({ ...property });
@@ -132,12 +130,10 @@ const DashboardHome = () => {
 
   const handleSaveProperty = () => {
     if (editingProperty) {
-      // Actualizar propiedad existente
       setMostVisitedProperties(prev => 
         prev.map(p => p.id === propertyFormData.id ? propertyFormData : p)
       );
     } else {
-      // Añadir nueva propiedad
       const newProperty = {
         ...propertyFormData,
         id: Date.now()
@@ -162,7 +158,6 @@ const DashboardHome = () => {
     });
   };
 
-  // Gestión de actividades recientes
   const handleEditActivity = (activity) => {
     setEditingActivity(activity);
     setActivityFormData({ ...activity });
@@ -178,12 +173,10 @@ const DashboardHome = () => {
 
   const handleSaveActivity = () => {
     if (editingActivity) {
-      // Actualizar actividad existente
       setRecentActivities(prev => 
         prev.map(a => a.id === activityFormData.id ? activityFormData : a)
       );
     } else {
-      // Añadir nueva actividad
       const newActivity = {
         ...activityFormData,
         id: Date.now()
@@ -208,7 +201,6 @@ const DashboardHome = () => {
     });
   };
 
-  // Gestión de imagen de cabecera
   const handleHeaderImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
@@ -683,7 +675,6 @@ const DashboardHome = () => {
         </Card>
       </div>
 
-      {/* Diálogo para cambiar la imagen principal */}
       <Dialog open={isEditingHeader} onOpenChange={setIsEditingHeader}>
         <DialogContent>
           <DialogHeader>
@@ -728,7 +719,6 @@ const DashboardHome = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Botón para cambiar la imagen principal */}
       <div className="mt-6 flex justify-end">
         <Button onClick={() => setIsEditingHeader(true)}>
           <Upload className="h-4 w-4 mr-2" />
