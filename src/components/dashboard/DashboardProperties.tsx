@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,9 +7,29 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { 
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose
+} from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
-// Datos de ejemplo
-const properties = [
+const propertiesData = [
   {
     id: '1',
     title: 'Villa Moderna Frente a la Playa',
@@ -80,13 +99,51 @@ const propertyTypes = [
 ];
 
 const DashboardProperties = () => {
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("listado");
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [properties, setProperties] = useState(propertiesData);
+  const [selectedProperty, setSelectedProperty] = useState<null | any>(null);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  
   const filteredProperties = properties.filter(property => 
     property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     property.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleViewProperty = (property: any) => {
+    setSelectedProperty(property);
+  };
+
+  const handleDeleteProperty = (property: any) => {
+    setSelectedProperty(property);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedProperty) {
+      setProperties(properties.filter(p => p.id !== selectedProperty.id));
+      toast({
+        title: "Propiedad eliminada",
+        description: `La propiedad "${selectedProperty.title}" ha sido eliminada correctamente.`,
+      });
+      setShowDeleteDialog(false);
+    }
+  };
+
+  const handleToggleFeatured = (property: any) => {
+    setProperties(properties.map(p => {
+      if (p.id === property.id) {
+        return { ...p, featured: !p.featured };
+      }
+      return p;
+    }));
+    
+    toast({
+      title: property.featured ? "Propiedad eliminada de destacados" : "Propiedad añadida a destacados",
+      description: `La propiedad "${property.title}" ha sido ${property.featured ? "eliminada de" : "añadida a"} destacados.`,
+    });
+  };
 
   return (
     <div>
@@ -156,17 +213,140 @@ const DashboardProperties = () => {
                         </Badge>
                       </TableCell>
                       <TableCell className="text-center">
-                        {property.featured ? '✓' : ''}
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className={property.featured ? "text-amber-500" : "text-gray-400"}
+                          onClick={() => handleToggleFeatured(property)}
+                        >
+                          {property.featured ? '★' : '☆'}
+                        </Button>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end space-x-2">
-                          <Button variant="ghost" size="icon">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                          <Button variant="ghost" size="icon">
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                          <Button variant="ghost" size="icon">
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="ghost" size="icon" onClick={() => handleViewProperty(property)}>
+                                <Eye className="h-4 w-4" />
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-3xl">
+                              <DialogHeader>
+                                <DialogTitle>{property.title}</DialogTitle>
+                                <DialogDescription>{property.location}</DialogDescription>
+                              </DialogHeader>
+                              <div className="grid grid-cols-2 gap-4 py-4">
+                                <div>
+                                  <h3 className="font-medium mb-2">Información General</h3>
+                                  <div className="space-y-2">
+                                    <div className="flex justify-between">
+                                      <span className="text-gray-500">Tipo:</span>
+                                      <span>{property.type}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                      <span className="text-gray-500">Precio:</span>
+                                      <span>${property.price.toLocaleString()}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                      <span className="text-gray-500">Estado:</span>
+                                      <span>{property.status}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                      <span className="text-gray-500">Destacado:</span>
+                                      <span>{property.featured ? 'Sí' : 'No'}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div>
+                                  <h3 className="font-medium mb-2">Características</h3>
+                                  <div className="space-y-2">
+                                    <div className="flex justify-between">
+                                      <span className="text-gray-500">Habitaciones:</span>
+                                      <span>{property.bedrooms}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                      <span className="text-gray-500">Baños:</span>
+                                      <span>{property.bathrooms}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                      <span className="text-gray-500">Área:</span>
+                                      <span>{property.area} m²</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <DialogFooter>
+                                <DialogClose asChild>
+                                  <Button variant="outline">Cerrar</Button>
+                                </DialogClose>
+                                <Button>Editar</Button>
+                              </DialogFooter>
+                            </DialogContent>
+                          </Dialog>
+                          
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="ghost" size="icon">
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                              <DialogHeader>
+                                <DialogTitle>Editar Propiedad</DialogTitle>
+                                <DialogDescription>
+                                  Modifica los detalles de esta propiedad
+                                </DialogDescription>
+                              </DialogHeader>
+                              <div className="grid gap-4 py-4">
+                                <div className="grid gap-2">
+                                  <Label htmlFor="title">Título</Label>
+                                  <Input id="title" defaultValue={selectedProperty?.title || ''} />
+                                </div>
+                                <div className="grid gap-2">
+                                  <Label htmlFor="location">Ubicación</Label>
+                                  <Input id="location" defaultValue={selectedProperty?.location || ''} />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid gap-2">
+                                    <Label htmlFor="price">Precio</Label>
+                                    <Input 
+                                      id="price" 
+                                      type="number"
+                                      defaultValue={selectedProperty?.price || ''} 
+                                    />
+                                  </div>
+                                  <div className="grid gap-2">
+                                    <Label htmlFor="type">Tipo</Label>
+                                    <Select defaultValue={selectedProperty?.type || ''}>
+                                      <SelectTrigger>
+                                        <SelectValue placeholder="Seleccionar tipo" />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        <SelectItem value="Villa">Villa</SelectItem>
+                                        <SelectItem value="Apartamento">Apartamento</SelectItem>
+                                        <SelectItem value="Casa">Casa</SelectItem>
+                                      </SelectContent>
+                                    </Select>
+                                  </div>
+                                </div>
+                              </div>
+                              <DialogFooter>
+                                <DialogClose asChild>
+                                  <Button variant="outline">Cancelar</Button>
+                                </DialogClose>
+                                <Button onClick={() => toast({
+                                  title: "Propiedad actualizada",
+                                  description: "Los cambios se han guardado correctamente."
+                                })}>Guardar cambios</Button>
+                              </DialogFooter>
+                            </DialogContent>
+                          </Dialog>
+                          
+                          <Button 
+                            variant="ghost" 
+                            size="icon"
+                            onClick={() => handleDeleteProperty(property)}
+                          >
                             <Trash2 className="h-4 w-4 text-red-500" />
                           </Button>
                         </div>
@@ -209,7 +389,17 @@ const DashboardProperties = () => {
                   </p>
                 </CardContent>
                 <CardFooter>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => {
+                      setActiveTab("listado");
+                      toast({
+                        title: `Propiedades de tipo ${type.label}`,
+                        description: `Mostrando propiedades de tipo ${type.label}.`
+                      });
+                    }}
+                  >
                     Ver {type.label}s
                   </Button>
                 </CardFooter>
@@ -247,7 +437,11 @@ const DashboardProperties = () => {
                         <TableCell>{property.type}</TableCell>
                         <TableCell>${property.price.toLocaleString()}</TableCell>
                         <TableCell className="text-right">
-                          <Button variant="destructive" size="sm">
+                          <Button 
+                            variant="destructive" 
+                            size="sm"
+                            onClick={() => handleToggleFeatured(property)}
+                          >
                             Quitar de destacados
                           </Button>
                         </TableCell>
@@ -259,8 +453,34 @@ const DashboardProperties = () => {
           </Card>
         </TabsContent>
       </Tabs>
+      
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>¿Estás seguro?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Esta acción no se puede deshacer. Esta eliminará permanentemente la propiedad
+              "{selectedProperty?.title}" de la base de datos.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete} className="bg-red-600 hover:bg-red-700">
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
 
 export default DashboardProperties;
+
+const Label = ({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) => {
+  return (
+    <label htmlFor={htmlFor} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+      {children}
+    </label>
+  );
+};
