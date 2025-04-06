@@ -22,9 +22,9 @@ const ContactPage = () => {
           </div>
           
           <div className="relative container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contáctanos</h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Get in touch with our team of experts for all your coastal property needs.
+              Ponte en contacto con nuestro equipo de expertos para todas tus necesidades de propiedades costeras.
             </p>
           </div>
         </div>
@@ -38,9 +38,9 @@ const ContactPage = () => {
                 <div className="w-16 h-16 bg-coastal-100 rounded-full flex items-center justify-center mb-4">
                   <MapPin className="h-8 w-8 text-coastal-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Office Location</h3>
+                <h3 className="text-xl font-semibold mb-2">Ubicación de la Oficina</h3>
                 <address className="text-gray-600 not-italic">
-                  123 Coastal Drive<br />
+                  123 Avenida Costera<br />
                   Malibu, CA 90265
                 </address>
               </div>
@@ -50,9 +50,9 @@ const ContactPage = () => {
                 <div className="w-16 h-16 bg-coastal-100 rounded-full flex items-center justify-center mb-4">
                   <Mail className="h-8 w-8 text-coastal-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-                <a href="mailto:info@moderncoast.com" className="text-gray-600">info@moderncoast.com</a>
-                <a href="mailto:support@moderncoast.com" className="text-gray-600">support@moderncoast.com</a>
+                <h3 className="text-xl font-semibold mb-2">Envíanos un Email</h3>
+                <a href="mailto:info@costamoderna.com" className="text-gray-600">info@costamoderna.com</a>
+                <a href="mailto:soporte@costamoderna.com" className="text-gray-600">soporte@costamoderna.com</a>
               </div>
               
               {/* Call Us */}
@@ -60,7 +60,7 @@ const ContactPage = () => {
                 <div className="w-16 h-16 bg-coastal-100 rounded-full flex items-center justify-center mb-4">
                   <Phone className="h-8 w-8 text-coastal-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Call Us</h3>
+                <h3 className="text-xl font-semibold mb-2">Llámanos</h3>
                 <a href="tel:+12345678900" className="text-gray-600">+1 (234) 567-8900</a>
                 <a href="tel:+12345678901" className="text-gray-600">+1 (234) 567-8901</a>
               </div>
@@ -70,10 +70,10 @@ const ContactPage = () => {
                 <div className="w-16 h-16 bg-coastal-100 rounded-full flex items-center justify-center mb-4">
                   <Clock className="h-8 w-8 text-coastal-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Working Hours</h3>
-                <p className="text-gray-600">Monday - Friday: 9AM - 6PM</p>
-                <p className="text-gray-600">Saturday: 10AM - 4PM</p>
-                <p className="text-gray-600">Sunday: Closed</p>
+                <h3 className="text-xl font-semibold mb-2">Horario de Atención</h3>
+                <p className="text-gray-600">Lunes - Viernes: 9AM - 6PM</p>
+                <p className="text-gray-600">Sábado: 10AM - 4PM</p>
+                <p className="text-gray-600">Domingo: Cerrado</p>
               </div>
             </div>
           </div>
@@ -83,15 +83,15 @@ const ContactPage = () => {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Visit Our Office</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Visita Nuestra Oficina</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Our office is conveniently located in the heart of Malibu. Stop by for a consultation with our expert team.
+                Nuestra oficina está ubicada convenientemente en el corazón de Malibu. Acércate para una consulta con nuestro equipo experto.
               </p>
             </div>
             
             <div className="h-[500px] rounded-lg overflow-hidden shadow-lg">
               <iframe 
-                title="Office Location"
+                title="Ubicación de la Oficina"
                 className="w-full h-full"
                 frameBorder="0"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52894.15263848123!2d-118.8376501727283!3d34.02554215263053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e81da9f908d63f%3A0x93b72d71b2ea8c5a!2sMalibu%2C%20CA%2C%20USA!5e0!3m2!1sen!2sca!4v1650000000000!5m2!1sen!2sca"

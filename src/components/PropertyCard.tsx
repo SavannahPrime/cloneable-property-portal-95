@@ -61,12 +61,12 @@ const PropertyCard = ({
           
           {featured && (
             <Badge className="absolute top-3 left-3 bg-coastal-600">
-              Featured
+              Destacado
             </Badge>
           )}
           
           <Badge className={`absolute bottom-3 left-3 ${forSale ? 'bg-green-600' : 'bg-blue-600'}`}>
-            {forSale ? 'For Sale' : 'For Rent'}
+            {forSale ? 'En Venta' : 'En Alquiler'}
           </Badge>
           
           <Badge className="absolute bottom-3 right-3 bg-gray-900/80 backdrop-blur-sm">
@@ -85,15 +85,15 @@ const PropertyCard = ({
             <div className="flex items-center justify-between border-t border-b border-gray-100 py-3 mb-3">
               <div className="flex items-center">
                 <Bed className="h-4 w-4 text-gray-500 mr-1" />
-                <span className="text-sm text-gray-600">{bedrooms} Beds</span>
+                <span className="text-sm text-gray-600">{bedrooms} Hab</span>
               </div>
               <div className="flex items-center">
                 <Bath className="h-4 w-4 text-gray-500 mr-1" />
-                <span className="text-sm text-gray-600">{bathrooms} Baths</span>
+                <span className="text-sm text-gray-600">{bathrooms} Baños</span>
               </div>
               <div className="flex items-center">
                 <SquareIcon className="h-4 w-4 text-gray-500 mr-1" />
-                <span className="text-sm text-gray-600">{area} sq ft</span>
+                <span className="text-sm text-gray-600">{area} m²</span>
               </div>
             </div>
           </div>
@@ -103,7 +103,7 @@ const PropertyCard = ({
               <p className="text-coastal-600 font-bold text-xl">${price.toLocaleString()}</p>
             </div>
             <Button variant="outline" className="text-coastal-600 border-coastal-600 hover:bg-coastal-50">
-              View Details
+              Ver Detalles
             </Button>
           </div>
         </div>

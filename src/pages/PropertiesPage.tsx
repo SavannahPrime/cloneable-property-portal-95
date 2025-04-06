@@ -11,7 +11,7 @@ import { Search, ArrowUpDown, Grid3X3, LayoutList } from 'lucide-react';
 const properties = [
   {
     id: '1',
-    title: 'Modern Beachfront Villa',
+    title: 'Villa Moderna Frente a la Playa',
     location: 'Malibu, California',
     price: 2950000,
     bedrooms: 4,
@@ -24,7 +24,7 @@ const properties = [
   },
   {
     id: '2',
-    title: 'Luxury Waterfront Apartment',
+    title: 'Apartamento de Lujo Frente al Mar',
     location: 'Miami Beach, Florida',
     price: 1875000,
     bedrooms: 3,
@@ -33,11 +33,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     featured: true,
     forSale: true,
-    type: 'Apartment'
+    type: 'Apartamento'
   },
   {
     id: '3',
-    title: 'Coastal Retreat with Pool',
+    title: 'Refugio Costero con Piscina',
     location: 'Naples, Florida',
     price: 1450000,
     bedrooms: 3,
@@ -46,11 +46,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
     featured: false,
     forSale: false,
-    type: 'House'
+    type: 'Casa'
   },
   {
     id: '4',
-    title: 'Oceanview Penthouse',
+    title: 'Ático con Vista al Océano',
     location: 'La Jolla, California',
     price: 3200000,
     bedrooms: 4,
@@ -59,11 +59,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     featured: false,
     forSale: true,
-    type: 'Penthouse'
+    type: 'Ático'
   },
   {
     id: '5',
-    title: 'Beachside Cottage',
+    title: 'Cabaña junto a la Playa',
     location: 'Santa Monica, California',
     price: 1250000,
     bedrooms: 2,
@@ -72,11 +72,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     featured: false,
     forSale: true,
-    type: 'Cottage'
+    type: 'Cabaña'
   },
   {
     id: '6',
-    title: 'Marina View Condo',
+    title: 'Condominio con Vista a la Marina',
     location: 'San Diego, California',
     price: 895000,
     bedrooms: 2,
@@ -85,7 +85,7 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80',
     featured: false,
     forSale: true,
-    type: 'Condo'
+    type: 'Condominio'
   }
 ];
 
@@ -124,9 +124,9 @@ const PropertiesPage = () => {
           </div>
           
           <div className="relative container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Properties</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Nuestras Propiedades</h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Explore our collection of premium coastal properties in the most desirable locations.
+              Explora nuestra colección de propiedades costeras premium en las ubicaciones más deseables.
             </p>
           </div>
         </div>
@@ -136,50 +136,50 @@ const PropertiesPage = () => {
           <div className="container mx-auto px-4">
             {/* Filters */}
             <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-              <h2 className="text-xl font-semibold mb-4">Find Your Perfect Property</h2>
+              <h2 className="text-xl font-semibold mb-4">Encuentra tu Propiedad Perfecta</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de Propiedad</label>
                   <select
                     name="type"
                     value={filters.type}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">All Types</option>
+                    <option value="">Todos los Tipos</option>
                     <option value="Villa">Villa</option>
-                    <option value="Apartment">Apartment</option>
-                    <option value="House">House</option>
-                    <option value="Penthouse">Penthouse</option>
-                    <option value="Cottage">Cottage</option>
-                    <option value="Condo">Condo</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Ático">Ático</option>
+                    <option value="Cabaña">Cabaña</option>
+                    <option value="Condominio">Condominio</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Estado</label>
                   <select
                     name="status"
                     value={filters.status}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">All Status</option>
-                    <option value="sale">For Sale</option>
-                    <option value="rent">For Rent</option>
+                    <option value="">Todos los Estados</option>
+                    <option value="sale">En Venta</option>
+                    <option value="rent">En Alquiler</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Habitaciones</label>
                   <select
                     name="bedrooms"
                     value={filters.bedrooms}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">Any</option>
+                    <option value="">Cualquier</option>
                     <option value="1">1+</option>
                     <option value="2">2+</option>
                     <option value="3">3+</option>
@@ -188,14 +188,14 @@ const PropertiesPage = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Bathrooms</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Baños</label>
                   <select
                     name="bathrooms"
                     value={filters.bathrooms}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">Any</option>
+                    <option value="">Cualquier</option>
                     <option value="1">1+</option>
                     <option value="2">2+</option>
                     <option value="3">3+</option>
@@ -205,7 +205,7 @@ const PropertiesPage = () => {
               
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Price Range: ${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()}
+                  Rango de Precio: ${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()}
                 </label>
                 <Slider 
                   defaultValue={priceRange}
@@ -219,7 +219,7 @@ const PropertiesPage = () => {
               <div className="flex justify-end">
                 <Button className="bg-coastal-600 hover:bg-coastal-700">
                   <Search className="h-4 w-4 mr-2" />
-                  Search Properties
+                  Buscar Propiedades
                 </Button>
               </div>
             </div>
@@ -227,7 +227,7 @@ const PropertiesPage = () => {
             {/* Results Controls */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-8">
               <p className="text-gray-600 mb-4 md:mb-0">
-                Showing <span className="font-medium">{properties.length}</span> properties
+                Mostrando <span className="font-medium">{properties.length}</span> propiedades
               </p>
               
               <div className="flex items-center space-x-4">
@@ -241,10 +241,10 @@ const PropertiesPage = () => {
                 </div>
                 
                 <select className="p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500">
-                  <option value="default">Default Sorting</option>
-                  <option value="price-asc">Price (Low to High)</option>
-                  <option value="price-desc">Price (High to Low)</option>
-                  <option value="newest">Newest First</option>
+                  <option value="default">Ordenación Predeterminada</option>
+                  <option value="price-asc">Precio (Bajo a Alto)</option>
+                  <option value="price-desc">Precio (Alto a Bajo)</option>
+                  <option value="newest">Más Recientes Primero</option>
                 </select>
               </div>
             </div>
@@ -272,18 +272,18 @@ const PropertiesPage = () => {
                         </div>
                         <div className="flex items-center justify-between border-t border-b border-gray-100 py-3 mb-3">
                           <div className="flex items-center">
-                            <span className="text-sm text-gray-600">{property.bedrooms} Beds</span>
+                            <span className="text-sm text-gray-600">{property.bedrooms} Hab</span>
                           </div>
                           <div className="flex items-center">
-                            <span className="text-sm text-gray-600">{property.bathrooms} Baths</span>
+                            <span className="text-sm text-gray-600">{property.bathrooms} Baños</span>
                           </div>
                           <div className="flex items-center">
-                            <span className="text-sm text-gray-600">{property.area} sq ft</span>
+                            <span className="text-sm text-gray-600">{property.area} m²</span>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <p className="text-coastal-600 font-bold text-xl">${property.price.toLocaleString()}</p>
-                          <Button className="bg-coastal-600 hover:bg-coastal-700">View Details</Button>
+                          <Button className="bg-coastal-600 hover:bg-coastal-700">Ver Detalles</Button>
                         </div>
                       </div>
                     </div>
@@ -298,7 +298,7 @@ const PropertiesPage = () => {
             <div className="mt-12 flex justify-center">
               <nav className="inline-flex rounded-md shadow">
                 <a href="#" className="py-2 px-4 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                  Previous
+                  Anterior
                 </a>
                 <a href="#" className="py-2 px-4 border border-coastal-600 bg-coastal-600 text-sm font-medium text-white">
                   1
@@ -310,7 +310,7 @@ const PropertiesPage = () => {
                   3
                 </a>
                 <a href="#" className="py-2 px-4 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                  Next
+                  Siguiente
                 </a>
               </nav>
             </div>

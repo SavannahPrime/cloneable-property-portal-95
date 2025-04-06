@@ -4,23 +4,23 @@ import { Award, Home, Clock, Users } from 'lucide-react';
 const features = [
   {
     icon: Award,
-    title: 'Premium Locations',
-    description: 'Access to exclusive properties in the most desirable coastal destinations around the world.'
+    title: 'Ubicaciones Premium',
+    description: 'Acceso a propiedades exclusivas en los destinos costeros más deseados de todo el mundo.'
   },
   {
     icon: Home,
-    title: 'Exceptional Properties',
-    description: 'Curated selection of luxury waterfront homes, villas, and apartments with stunning views.'
+    title: 'Propiedades Excepcionales',
+    description: 'Selección curada de casas, villas y apartamentos de lujo frente al mar con vistas impresionantes.'
   },
   {
     icon: Clock,
-    title: '24/7 Support',
-    description: 'Our dedicated team is available around the clock to assist with all your property needs.'
+    title: 'Soporte 24/7',
+    description: 'Nuestro equipo dedicado está disponible las 24 horas para asistir con todas sus necesidades inmobiliarias.'
   },
   {
     icon: Users,
-    title: 'Expert Agents',
-    description: 'Experienced real estate professionals specializing in premium coastal properties.'
+    title: 'Agentes Expertos',
+    description: 'Profesionales inmobiliarios con experiencia especializados en propiedades costeras premium.'
   }
 ];
 
@@ -29,9 +29,9 @@ const WhyChooseUs = () => {
     <section className="py-20 bg-coastal-600 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-4">Why Choose Modern Coast Properties</h2>
+          <h2 className="text-3xl font-bold mb-4">Por Qué Elegir Costa Moderna Propiedades</h2>
           <p className="text-white/80">
-            We combine extensive market knowledge with personalized service to help you find your perfect coastal home.
+            Combinamos amplio conocimiento del mercado con servicio personalizado para ayudarte a encontrar tu hogar costero perfecto.
           </p>
         </div>
         

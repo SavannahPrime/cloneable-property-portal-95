@@ -5,26 +5,26 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    name: 'Jennifer Lopez',
-    role: 'Homeowner',
+    name: 'Jennifer López',
+    role: 'Propietaria',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
-    quote: 'Modern Coast Properties helped me find my dream beachfront home. Their team was professional, knowledgeable, and made the entire buying process seamless.',
+    quote: 'Costa Moderna Propiedades me ayudó a encontrar mi casa de ensueño frente al mar. Su equipo fue profesional, conocedor e hizo que todo el proceso de compra fuera sin problemas.',
     rating: 5
   },
   {
     id: 2,
-    name: 'Michael Johnson',
-    role: 'Property Investor',
+    name: 'Miguel Johnson',
+    role: 'Inversionista Inmobiliario',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
-    quote: 'As a property investor, I\'ve worked with many agencies, but Modern Coast stands out for their market expertise and exceptional service. Highly recommended!',
+    quote: 'Como inversor inmobiliario, he trabajado con muchas agencias, pero Costa Moderna destaca por su conocimiento del mercado y servicio excepcional. ¡Altamente recomendado!',
     rating: 5
   },
   {
     id: 3,
     name: 'Emma Wilson',
-    role: 'First-time Buyer',
+    role: 'Compradora primeriza',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1922&q=80',
-    quote: 'The team at Modern Coast Properties guided me through my first property purchase with patience and expertise. They found me the perfect coastal apartment within my budget.',
+    quote: 'El equipo de Costa Moderna Propiedades me guió durante mi primera compra de propiedad con paciencia y experiencia. Encontraron el apartamento costero perfecto dentro de mi presupuesto.',
     rating: 4
   }
 ];
@@ -46,9 +46,9 @@ const Testimonials = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Lo Que Dicen Nuestros Clientes</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            Discover why our clients choose Modern Coast Properties for their coastal real estate needs.
+            Descubre por qué nuestros clientes eligen Costa Moderna Propiedades para sus necesidades inmobiliarias costeras.
           </p>
         </div>
         

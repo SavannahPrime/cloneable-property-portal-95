@@ -4,25 +4,25 @@ import { Link } from 'react-router-dom';
 const propertyTypes = [
   {
     id: 'beachfront',
-    title: 'Beachfront',
+    title: 'Frente a la Playa',
     count: 24,
     image: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
   },
   {
     id: 'luxury',
-    title: 'Luxury Villas',
+    title: 'Villas de Lujo',
     count: 18,
     image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
   },
   {
     id: 'waterfront',
-    title: 'Waterfront',
+    title: 'Frente al Mar',
     count: 32,
     image: 'https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
   },
   {
     id: 'condos',
-    title: 'Condos',
+    title: 'Condominios',
     count: 41,
     image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
   }
@@ -33,9 +33,9 @@ const PropertyTypes = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore Property Types</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Explorar Tipos de Propiedades</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            From luxurious beachfront villas to modern waterfront apartments, find the perfect coastal property that matches your lifestyle.
+            Desde lujosas villas frente a la playa hasta modernos apartamentos con vista al mar, encuentra la propiedad costera perfecta que se adapte a tu estilo de vida.
           </p>
         </div>
         
@@ -54,7 +54,7 @@ const PropertyTypes = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70"></div>
                 <div className="absolute bottom-0 left-0 p-6">
                   <h3 className="text-2xl font-semibold text-white mb-1">{type.title}</h3>
-                  <p className="text-white/80">{type.count} properties</p>
+                  <p className="text-white/80">{type.count} propiedades</p>
                 </div>
               </div>
             </Link>

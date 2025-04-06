@@ -17,19 +17,19 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-coastal-600">Modern Coast</span>
-              <span className="text-2xl ml-1 font-light text-gray-600">Properties</span>
+              <span className="text-2xl font-bold text-coastal-600">Costa Moderna</span>
+              <span className="text-2xl ml-1 font-light text-gray-600">Propiedades</span>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-coastal-600 font-medium">Home</Link>
-            <Link to="/properties" className="text-gray-700 hover:text-coastal-600 font-medium">Properties</Link>
-            <Link to="/about" className="text-gray-700 hover:text-coastal-600 font-medium">About</Link>
-            <Link to="/contact" className="text-gray-700 hover:text-coastal-600 font-medium">Contact</Link>
+            <Link to="/" className="text-gray-700 hover:text-coastal-600 font-medium">Inicio</Link>
+            <Link to="/properties" className="text-gray-700 hover:text-coastal-600 font-medium">Propiedades</Link>
+            <Link to="/about" className="text-gray-700 hover:text-coastal-600 font-medium">Nosotros</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-coastal-600 font-medium">Contacto</Link>
             <Button variant="default" className="bg-coastal-600 hover:bg-coastal-700 text-white">
-              Book Viewing
+              Agendar Visita
             </Button>
           </div>
           
@@ -59,35 +59,35 @@ const Navbar = () => {
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
+                Inicio
               </Link>
               <Link 
                 to="/properties" 
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Properties
+                Propiedades
               </Link>
               <Link 
                 to="/about" 
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                About
+                Nosotros
               </Link>
               <Link 
                 to="/contact" 
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact
+                Contacto
               </Link>
               <Button 
                 variant="default" 
                 className="bg-coastal-600 hover:bg-coastal-700 text-white w-full"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Book Viewing
+                Agendar Visita
               </Button>
             </div>
           </div>
