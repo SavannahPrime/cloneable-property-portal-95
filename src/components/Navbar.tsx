@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LayoutDashboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -31,6 +31,10 @@ const Navbar = () => {
             <Link to="/properties" className="text-gray-700 hover:text-coastal-600 font-medium">Propiedades</Link>
             <Link to="/about" className="text-gray-700 hover:text-coastal-600 font-medium">Nosotros</Link>
             <Link to="/contact" className="text-gray-700 hover:text-coastal-600 font-medium">Contacto</Link>
+            <Link to="/dashboard" className="flex items-center text-gray-700 hover:text-coastal-600 font-medium">
+              <LayoutDashboard className="h-4 w-4 mr-1" />
+              Admin
+            </Link>
             <Button variant="default" className="bg-coastal-600 hover:bg-coastal-700 text-white">
               Agendar Visita
             </Button>
@@ -84,6 +88,14 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contacto
+              </Link>
+              <Link 
+                to="/dashboard" 
+                className="flex items-center text-gray-700 hover:text-coastal-600 font-medium py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <LayoutDashboard className="h-4 w-4 mr-1" />
+                Admin
               </Link>
               <Button 
                 variant="default" 
