@@ -27,16 +27,16 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-coastal-600 font-medium">Inicio</Link>
-            <Link to="/properties" className="text-gray-700 hover:text-coastal-600 font-medium">Propiedades</Link>
-            <Link to="/about" className="text-gray-700 hover:text-coastal-600 font-medium">Nosotros</Link>
-            <Link to="/contact" className="text-gray-700 hover:text-coastal-600 font-medium">Contacto</Link>
+            <Link to="/" className="text-gray-700 hover:text-coastal-600 font-medium">Home</Link>
+            <Link to="/properties" className="text-gray-700 hover:text-coastal-600 font-medium">Properties</Link>
+            <Link to="/about" className="text-gray-700 hover:text-coastal-600 font-medium">About Us</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-coastal-600 font-medium">Contact</Link>
             <Link to="/dashboard" className="flex items-center text-gray-700 hover:text-coastal-600 font-medium">
               <LayoutDashboard className="h-4 w-4 mr-1" />
               Admin
             </Link>
             <Button variant="default" className="bg-coastal-600 hover:bg-coastal-700 text-white">
-              Agendar Visita
+              Schedule a Viewing
             </Button>
           </div>
           
@@ -66,28 +66,28 @@ const Navbar = () => {
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Inicio
+                Home
               </Link>
               <Link 
                 to="/properties" 
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Propiedades
+                Properties
               </Link>
               <Link 
                 to="/about" 
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Nosotros
+                About Us
               </Link>
               <Link 
                 to="/contact" 
                 className="text-gray-700 hover:text-coastal-600 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contacto
+                Contact
               </Link>
               <Link 
                 to="/dashboard" 
@@ -102,7 +102,7 @@ const Navbar = () => {
                 className="bg-coastal-600 hover:bg-coastal-700 text-white w-full"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Agendar Visita
+                Schedule a Viewing
               </Button>
             </div>
           </div>

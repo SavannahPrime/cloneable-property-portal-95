@@ -6,21 +6,21 @@ import { useNavigate } from "react-router-dom";
 
 const propertyTypes = [
   { id: 'villa', label: 'Villa' },
-  { id: 'apartamento', label: 'Apartamento' },
-  { id: 'atico', label: 'Ático' },
-  { id: 'casa', label: 'Casa' },
+  { id: 'apartment', label: 'Apartment' },
+  { id: 'penthouse', label: 'Penthouse' },
+  { id: 'house', label: 'House' },
   { id: 'chalet', label: 'Chalet' },
-  { id: 'adosado', label: 'Adosado' },
-  { id: 'piso', label: 'Piso' },
-  { id: 'parcela', label: 'Parcela' },
-  { id: 'terreno', label: 'Terreno' },
-  { id: 'local', label: 'Local Comercial' }
+  { id: 'townhouse', label: 'Townhouse' },
+  { id: 'flat', label: 'Flat' },
+  { id: 'plot', label: 'Plot' },
+  { id: 'land', label: 'Land' },
+  { id: 'commercial', label: 'Commercial Property' }
 ];
 
 const locations = [
   { id: 'malibu', label: 'Malibu' },
   { id: 'miami', label: 'Miami' },
-  { id: 'hamptons', label: 'Los Hamptons' },
+  { id: 'hamptons', label: 'The Hamptons' },
   { id: 'newportBeach', label: 'Newport Beach' },
   { id: 'sanDiego', label: 'San Diego' },
   { id: 'outerBanks', label: 'Outer Banks' }
@@ -41,26 +41,26 @@ const Hero = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
 
   const handleSearch = () => {
-    // Construir los parámetros de búsqueda
+    // Build search parameters
     const params = new URLSearchParams();
     
     if (selectedType) {
       params.append('type', selectedType);
-      console.log("Buscando tipo:", selectedType);
+      console.log("Searching type:", selectedType);
     }
     
     if (selectedLocation) {
       params.append('location', selectedLocation);
-      console.log("Buscando ubicación:", selectedLocation);
+      console.log("Searching location:", selectedLocation);
     }
     
     if (selectedPriceRange) {
       params.append('price', selectedPriceRange);
-      console.log("Buscando rango de precio:", selectedPriceRange);
+      console.log("Searching price range:", selectedPriceRange);
     }
 
-    // Navegar a la página de propiedades con los filtros
-    console.log("Navegando a:", `/properties?${params.toString()}`);
+    // Navigate to properties page with filters
+    console.log("Navigating to:", `/properties?${params.toString()}`);
     navigate(`/properties?${params.toString()}`);
   };
 
@@ -80,10 +80,10 @@ const Hero = () => {
       <div className="relative container mx-auto px-4 h-full flex flex-col justify-center">
         <div className="max-w-3xl animate-fade-in">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-shadow">
-            Encuentra Tu Propiedad Costera Ideal
+            Find Your Ideal Coastal Property
           </h1>
           <p className="text-xl text-white/90 mb-8 max-w-2xl">
-            Descubre impresionantes casas frente al mar y propiedades exclusivas junto a la playa en las costas más bellas.
+            Discover stunning beachfront homes and exclusive seaside properties on the world's most beautiful coastlines.
           </p>
           
           {/* Search Bar */}
@@ -95,7 +95,7 @@ const Hero = () => {
                   value={selectedType}
                   onChange={(e) => setSelectedType(e.target.value)}
                 >
-                  <option value="">Tipo de Propiedad</option>
+                  <option value="">Property Type</option>
                   {propertyTypes.map(type => (
                     <option key={type.id} value={type.id}>{type.label}</option>
                   ))}
@@ -107,7 +107,7 @@ const Hero = () => {
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
                 >
-                  <option value="">Ubicación</option>
+                  <option value="">Location</option>
                   {locations.map(location => (
                     <option key={location.id} value={location.id}>{location.label}</option>
                   ))}
@@ -119,7 +119,7 @@ const Hero = () => {
                   value={selectedPriceRange}
                   onChange={(e) => setSelectedPriceRange(e.target.value)}
                 >
-                  <option value="">Rango de Precio</option>
+                  <option value="">Price Range</option>
                   {priceRanges.map(range => (
                     <option key={range.id} value={range.id}>{range.label}</option>
                   ))}
@@ -131,7 +131,7 @@ const Hero = () => {
                   onClick={handleSearch}
                 >
                   <Search className="h-5 w-5 mr-2" />
-                  Buscar
+                  Search
                 </Button>
               </div>
             </div>

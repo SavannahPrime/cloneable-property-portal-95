@@ -11,16 +11,14 @@ import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-white">
       <Navbar />
-      <main className="flex-grow">
-        <Hero />
-        <FeaturedProperties />
-        <PropertyTypes />
-        <WhyChooseUs />
-        <Testimonials />
-        <ContactSection />
-      </main>
+      <Hero />
+      <FeaturedProperties />
+      <PropertyTypes />
+      <WhyChooseUs />
+      <Testimonials />
+      <ContactSection />
       <Footer />
     </div>
   );

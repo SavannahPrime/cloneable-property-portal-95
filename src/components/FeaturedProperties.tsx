@@ -6,7 +6,7 @@ import { ChevronRight } from 'lucide-react';
 const featuredProperties = [
   {
     id: '1',
-    title: 'Villa Moderna Frente a la Playa',
+    title: 'Modern Beachfront Villa',
     location: 'Malibu, California',
     price: 2950000,
     bedrooms: 4,
@@ -19,7 +19,7 @@ const featuredProperties = [
   },
   {
     id: '2',
-    title: 'Apartamento de Lujo Frente al Mar',
+    title: 'Luxury Seafront Apartment',
     location: 'Miami Beach, Florida',
     price: 1875000,
     bedrooms: 3,
@@ -28,11 +28,11 @@ const featuredProperties = [
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     featured: true,
     forSale: true,
-    type: 'Apartamento'
+    type: 'Apartment'
   },
   {
     id: '3',
-    title: 'Refugio Costero con Piscina',
+    title: 'Coastal Retreat with Pool',
     location: 'Naples, Florida',
     price: 1450000,
     bedrooms: 3,
@@ -41,7 +41,7 @@ const featuredProperties = [
     image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
     featured: true,
     forSale: false,
-    type: 'Casa'
+    type: 'House'
   }
 ];
 
@@ -51,16 +51,16 @@ const FeaturedProperties = () => {
       <div className="container mx-auto px-4">
         <div className="mb-10 flex flex-col md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Propiedades Destacadas</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Featured Properties</h2>
             <p className="text-gray-600 max-w-2xl">
-              Descubre nuestra selección de propiedades costeras premium en las ubicaciones más codiciadas.
+              Discover our selection of premium coastal properties in the most sought-after locations.
             </p>
           </div>
           <Button 
             variant="outline" 
             className="text-coastal-600 border-coastal-600 hover:bg-coastal-50 mt-4 md:mt-0"
           >
-            Ver Todas las Propiedades
+            View All Properties
             <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
         </div>

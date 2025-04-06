@@ -15,8 +15,8 @@ const Footer = () => {
     console.log('Subscribed:', email);
     
     toast({
-      title: "¡Suscripción exitosa!",
-      description: "Gracias por suscribirte a nuestro boletín.",
+      title: "Subscription Successful!",
+      description: "Thank you for subscribing to our newsletter.",
     });
     
     setEmail('');
@@ -35,7 +35,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-gray-400 mb-6">
-              Propiedades costeras premium para compradores exigentes. Encuentra tu hogar frente al mar perfecto con nuestro equipo de expertos.
+              Premium coastal properties for discerning buyers. Find your perfect waterfront home with our expert team.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-coastal-400">
@@ -54,19 +54,19 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-white">Inicio</Link>
+                <Link to="/" className="text-gray-400 hover:text-white">Home</Link>
               </li>
               <li>
-                <Link to="/properties" className="text-gray-400 hover:text-white">Propiedades</Link>
+                <Link to="/properties" className="text-gray-400 hover:text-white">Properties</Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-white">Nosotros</Link>
+                <Link to="/about" className="text-gray-400 hover:text-white">About Us</Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-white">Contacto</Link>
+                <Link to="/contact" className="text-gray-400 hover:text-white">Contact</Link>
               </li>
               <li>
                 <Link to="/blog" className="text-gray-400 hover:text-white">Blog</Link>
@@ -75,36 +75,36 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Tipos de Propiedades</h3>
+            <h3 className="text-lg font-semibold mb-4">Property Types</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/properties?type=beachfront" className="text-gray-400 hover:text-white">Frente a la Playa</Link>
+                <Link to="/properties?type=beachfront" className="text-gray-400 hover:text-white">Beachfront</Link>
               </li>
               <li>
-                <Link to="/properties?type=luxury" className="text-gray-400 hover:text-white">Villas de Lujo</Link>
+                <Link to="/properties?type=luxury" className="text-gray-400 hover:text-white">Luxury Villas</Link>
               </li>
               <li>
-                <Link to="/properties?type=waterfront" className="text-gray-400 hover:text-white">Frente al Mar</Link>
+                <Link to="/properties?type=waterfront" className="text-gray-400 hover:text-white">Waterfront</Link>
               </li>
               <li>
-                <Link to="/properties?type=condos" className="text-gray-400 hover:text-white">Condominios</Link>
+                <Link to="/properties?type=condos" className="text-gray-400 hover:text-white">Condos</Link>
               </li>
               <li>
-                <Link to="/properties?type=investment" className="text-gray-400 hover:text-white">Propiedades de Inversión</Link>
+                <Link to="/properties?type=investment" className="text-gray-400 hover:text-white">Investment Properties</Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Boletín</h3>
+            <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
             <p className="text-gray-400 mb-4">
-              Suscríbete a nuestro boletín para recibir las últimas propiedades y actualizaciones del mercado.
+              Subscribe to our newsletter for the latest property listings and market updates.
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
               <div className="flex">
                 <Input
                   type="email"
-                  placeholder="Tu email"
+                  placeholder="Your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -120,11 +120,11 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8 mt-8 text-center">
           <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Global Costa Invest. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Global Costa Invest. All rights reserved.
           </p>
           <div className="mt-4 flex justify-center space-x-4 text-sm">
-            <Link to="/privacy" className="text-gray-400 hover:text-white">Política de Privacidad</Link>
-            <Link to="/terms" className="text-gray-400 hover:text-white">Términos de Servicio</Link>
+            <Link to="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link>
+            <Link to="/terms" className="text-gray-400 hover:text-white">Terms of Service</Link>
           </div>
         </div>
       </div>

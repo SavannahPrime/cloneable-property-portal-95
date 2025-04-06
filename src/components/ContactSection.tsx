@@ -29,8 +29,8 @@ const ContactSection = () => {
     
     // Show success toast
     toast({
-      title: "¡Mensaje Enviado!",
-      description: "Nos pondremos en contacto contigo lo antes posible.",
+      title: "Message Sent!",
+      description: "We'll get back to you as soon as possible.",
     });
     
     // Reset form
@@ -46,16 +46,16 @@ const ContactSection = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Contáctanos</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Contact Us</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            ¿Tienes alguna pregunta sobre una propiedad o quieres programar una visita? Ponte en contacto con nuestro equipo de expertos.
+            Have a question about a property or want to schedule a viewing? Get in touch with our expert team.
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="bg-gray-50 p-8 rounded-lg">
-            <h3 className="text-2xl font-semibold mb-6">Ponte en Contacto</h3>
+            <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
             
             <div className="space-y-6">
               <div className="flex items-start gap-4">
@@ -63,7 +63,7 @@ const ContactSection = () => {
                   <Phone className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-lg">Teléfono</h4>
+                  <h4 className="font-medium text-lg">Phone</h4>
                   <a href="tel:+1234567890" className="text-gray-600 hover:text-coastal-600">+1 (234) 567-890</a>
                 </div>
               </div>
@@ -74,7 +74,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-lg">Email</h4>
-                  <a href="mailto:info@costamoderna.com" className="text-gray-600 hover:text-coastal-600">info@costamoderna.com</a>
+                  <a href="mailto:info@globalcostainvest.com" className="text-gray-600 hover:text-coastal-600">info@globalcostainvest.com</a>
                 </div>
               </div>
               
@@ -83,9 +83,9 @@ const ContactSection = () => {
                   <MapPin className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-lg">Oficina</h4>
+                  <h4 className="font-medium text-lg">Office</h4>
                   <address className="text-gray-600 not-italic">
-                    123 Avenida Costera<br />
+                    123 Coastal Avenue<br />
                     Malibu, CA 90265
                   </address>
                 </div>
@@ -93,19 +93,19 @@ const ContactSection = () => {
             </div>
             
             <div className="mt-8 pt-8 border-t border-gray-200">
-              <h4 className="font-medium mb-4">Horario de Oficina</h4>
+              <h4 className="font-medium mb-4">Office Hours</h4>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex justify-between">
-                  <span>Lunes - Viernes</span>
+                  <span>Monday - Friday</span>
                   <span>9:00 AM - 6:00 PM</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Sábado</span>
+                  <span>Saturday</span>
                   <span>10:00 AM - 4:00 PM</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Domingo</span>
-                  <span>Cerrado</span>
+                  <span>Sunday</span>
+                  <span>Closed</span>
                 </li>
               </ul>
             </div>
@@ -116,14 +116,14 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block mb-2 text-gray-700 font-medium">
-                  Tu Nombre
+                  Your Name
                 </label>
                 <Input 
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Juan Pérez"
+                  placeholder="John Smith"
                   required
                   className="w-full"
                 />
@@ -131,7 +131,7 @@ const ContactSection = () => {
               
               <div>
                 <label htmlFor="email" className="block mb-2 text-gray-700 font-medium">
-                  Correo Electrónico
+                  Email Address
                 </label>
                 <Input 
                   id="email"
@@ -139,7 +139,7 @@ const ContactSection = () => {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="juan@ejemplo.com"
+                  placeholder="john@example.com"
                   required
                   className="w-full"
                 />
@@ -147,7 +147,7 @@ const ContactSection = () => {
               
               <div>
                 <label htmlFor="phone" className="block mb-2 text-gray-700 font-medium">
-                  Número de Teléfono
+                  Phone Number
                 </label>
                 <Input 
                   id="phone"
@@ -161,14 +161,14 @@ const ContactSection = () => {
               
               <div>
                 <label htmlFor="message" className="block mb-2 text-gray-700 font-medium">
-                  Mensaje
+                  Message
                 </label>
                 <Textarea 
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Estoy interesado en conocer más sobre..."
+                  placeholder="I'm interested in learning more about..."
                   required
                   rows={5}
                   className="w-full"
@@ -179,7 +179,7 @@ const ContactSection = () => {
                 type="submit" 
                 className="w-full bg-coastal-600 hover:bg-coastal-700 text-white"
               >
-                Enviar Mensaje
+                Send Message
               </Button>
             </form>
           </div>

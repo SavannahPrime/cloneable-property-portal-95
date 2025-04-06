@@ -11,30 +11,30 @@ interface Testimonial {
   rating: number;
 }
 
-// Estado inicial de los testimonios
+// Initial testimonials data
 const defaultTestimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Jennifer López',
-    role: 'Propietaria',
+    name: 'Jennifer Lopez',
+    role: 'Property Owner',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
-    quote: 'Costa Moderna Propiedades me ayudó a encontrar mi casa de ensueño frente al mar. Su equipo fue profesional, conocedor e hizo que todo el proceso de compra fuera sin problemas.',
+    quote: 'Global Costa Invest helped me find my dream beachfront home. Their team was professional, knowledgeable, and made the entire buying process seamless.',
     rating: 5
   },
   {
     id: 2,
-    name: 'Miguel Johnson',
-    role: 'Inversionista Inmobiliario',
+    name: 'Michael Johnson',
+    role: 'Real Estate Investor',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
-    quote: 'Como inversor inmobiliario, he trabajado con muchas agencias, pero Costa Moderna destaca por su conocimiento del mercado y servicio excepcional. ¡Altamente recomendado!',
+    quote: 'As a real estate investor, I\'ve worked with many agencies, but Global Costa Invest stands out for their market knowledge and exceptional service. Highly recommended!',
     rating: 5
   },
   {
     id: 3,
     name: 'Emma Wilson',
-    role: 'Compradora primeriza',
+    role: 'First-time Buyer',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1922&q=80',
-    quote: 'El equipo de Costa Moderna Propiedades me guió durante mi primera compra de propiedad con paciencia y experiencia. Encontraron el apartamento costero perfecto dentro de mi presupuesto.',
+    quote: 'The Global Costa Invest team guided me through my first property purchase with patience and expertise. They found the perfect coastal apartment within my budget.',
     rating: 4
   }
 ];
@@ -44,13 +44,13 @@ const Testimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
-    // Intentar cargar los testimonios del localStorage
+    // Try to load testimonials from localStorage
     const savedTestimonials = localStorage.getItem('testimonials');
     if (savedTestimonials) {
       try {
         setTestimonials(JSON.parse(savedTestimonials));
       } catch (error) {
-        console.error('Error al cargar los testimonios:', error);
+        console.error('Error loading testimonials:', error);
         setTestimonials(defaultTestimonials);
       }
     } else {
@@ -66,7 +66,7 @@ const Testimonials = () => {
     setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1));
   };
 
-  // Si no hay testimonios, no mostrar nada
+  // If no testimonials, don't render anything
   if (testimonials.length === 0) return null;
   
   const testimonial = testimonials[currentIndex];
@@ -75,9 +75,9 @@ const Testimonials = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Lo Que Dicen Nuestros Clientes</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            Descubre por qué nuestros clientes eligen Costa Moderna Propiedades para sus necesidades inmobiliarias costeras.
+            Discover why our clients choose Global Costa Invest for their coastal real estate needs.
           </p>
         </div>
         
