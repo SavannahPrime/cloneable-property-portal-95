@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LayoutDashboard, Home, Building, Users, Phone, Settings, LogOut, FooterIcon } from 'lucide-react';
+import { LayoutDashboard, Home, Building, Users, Phone, Settings, LogOut, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import DashboardHome from '@/components/dashboard/DashboardHome';
 import DashboardProperties from '@/components/dashboard/DashboardProperties';
@@ -70,7 +70,7 @@ const DashboardPage = () => {
                 className="w-full justify-start"
                 onClick={() => setActiveTab("footer")}
               >
-                <FooterIcon className="h-5 w-5 mr-3" />
+                <FileText className="h-5 w-5 mr-3" />
                 Pie de Página
               </Button>
               
