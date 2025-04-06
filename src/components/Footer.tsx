@@ -28,8 +28,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link to="/" className="flex items-center mb-6">
-              <span className="text-2xl font-bold text-coastal-400">Costa Moderna</span>
-              <span className="text-2xl ml-1 font-light text-gray-400">Propiedades</span>
+              <img 
+                src="/lovable-uploads/9108d982-d58c-4d6d-b2b0-4e4a74e90404.png" 
+                alt="Global Costa Invest" 
+                className="h-12"
+              />
             </Link>
             <p className="text-gray-400 mb-6">
               Propiedades costeras premium para compradores exigentes. Encuentra tu hogar frente al mar perfecto con nuestro equipo de expertos.
@@ -117,7 +120,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8 mt-8 text-center">
           <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} Costa Moderna Propiedades. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Global Costa Invest. Todos los derechos reservados.
           </p>
           <div className="mt-4 flex justify-center space-x-4 text-sm">
             <Link to="/privacy" className="text-gray-400 hover:text-white">Política de Privacidad</Link>

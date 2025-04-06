@@ -29,7 +29,7 @@ const WhyChooseUs = () => {
     <section className="py-20 bg-coastal-600 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-4">Por Qué Elegir Costa Moderna Propiedades</h2>
+          <h2 className="text-3xl font-bold mb-4">Por Qué Elegir Global Costa Invest</h2>
           <p className="text-white/80">
             Combinamos amplio conocimiento del mercado con servicio personalizado para ayudarte a encontrar tu hogar costero perfecto.
           </p>

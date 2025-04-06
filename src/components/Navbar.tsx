@@ -17,8 +17,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-coastal-600">Costa Moderna</span>
-              <span className="text-2xl ml-1 font-light text-gray-600">Propiedades</span>
+              <img 
+                src="/lovable-uploads/9108d982-d58c-4d6d-b2b0-4e4a74e90404.png" 
+                alt="Global Costa Invest" 
+                className="h-12"
+              />
             </Link>
           </div>
           
