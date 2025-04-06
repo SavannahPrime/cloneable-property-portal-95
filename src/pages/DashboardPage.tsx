@@ -13,7 +13,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const DashboardPage = () => {
-  const [activeTab, setActiveTab] = useState("inicio");
+  const [activeTab, setActiveTab] = useState("home");
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -25,44 +25,44 @@ const DashboardPage = () => {
           <aside className="md:w-64 bg-white shadow-md rounded-lg p-6 h-fit">
             <div className="flex items-center gap-3 mb-8">
               <LayoutDashboard className="h-6 w-6 text-coastal-600" />
-              <h2 className="text-xl font-bold text-gray-900">Panel Admin</h2>
+              <h2 className="text-xl font-bold text-gray-900">Admin Panel</h2>
             </div>
             
             <nav className="space-y-2">
               <Button 
-                variant={activeTab === "inicio" ? "default" : "ghost"} 
+                variant={activeTab === "home" ? "default" : "ghost"} 
                 className="w-full justify-start"
-                onClick={() => setActiveTab("inicio")}
+                onClick={() => setActiveTab("home")}
               >
                 <Home className="h-5 w-5 mr-3" />
-                Inicio
+                Home
               </Button>
               
               <Button 
-                variant={activeTab === "propiedades" ? "default" : "ghost"} 
+                variant={activeTab === "properties" ? "default" : "ghost"} 
                 className="w-full justify-start"
-                onClick={() => setActiveTab("propiedades")}
+                onClick={() => setActiveTab("properties")}
               >
                 <Building className="h-5 w-5 mr-3" />
-                Propiedades
+                Properties
               </Button>
               
               <Button 
-                variant={activeTab === "nosotros" ? "default" : "ghost"} 
+                variant={activeTab === "about" ? "default" : "ghost"} 
                 className="w-full justify-start"
-                onClick={() => setActiveTab("nosotros")}
+                onClick={() => setActiveTab("about")}
               >
                 <Users className="h-5 w-5 mr-3" />
-                Nosotros
+                About Us
               </Button>
               
               <Button 
-                variant={activeTab === "contacto" ? "default" : "ghost"} 
+                variant={activeTab === "contact" ? "default" : "ghost"} 
                 className="w-full justify-start"
-                onClick={() => setActiveTab("contacto")}
+                onClick={() => setActiveTab("contact")}
               >
                 <Phone className="h-5 w-5 mr-3" />
-                Contacto
+                Contact
               </Button>
               
               <Button 
@@ -71,16 +71,16 @@ const DashboardPage = () => {
                 onClick={() => setActiveTab("footer")}
               >
                 <FileText className="h-5 w-5 mr-3" />
-                Pie de Página
+                Footer
               </Button>
               
               <Button 
-                variant={activeTab === "ajustes" ? "default" : "ghost"} 
+                variant={activeTab === "settings" ? "default" : "ghost"} 
                 className="w-full justify-start"
-                onClick={() => setActiveTab("ajustes")}
+                onClick={() => setActiveTab("settings")}
               >
                 <Settings className="h-5 w-5 mr-3" />
-                Ajustes
+                Settings
               </Button>
               
               <div className="pt-4 mt-4 border-t border-gray-200">
@@ -89,7 +89,7 @@ const DashboardPage = () => {
                   className="w-full justify-start text-red-500 hover:text-red-700 hover:bg-red-50"
                 >
                   <LogOut className="h-5 w-5 mr-3" />
-                  Cerrar Sesión
+                  Logout
                 </Button>
               </div>
             </nav>
@@ -97,12 +97,12 @@ const DashboardPage = () => {
           
           {/* Content */}
           <div className="flex-1 bg-white shadow-md rounded-lg p-6">
-            {activeTab === "inicio" && <DashboardHome />}
-            {activeTab === "propiedades" && <DashboardProperties />}
-            {activeTab === "nosotros" && <DashboardAbout />}
-            {activeTab === "contacto" && <DashboardContact />}
+            {activeTab === "home" && <DashboardHome />}
+            {activeTab === "properties" && <DashboardProperties />}
+            {activeTab === "about" && <DashboardAbout />}
+            {activeTab === "contact" && <DashboardContact />}
             {activeTab === "footer" && <DashboardFooter />}
-            {activeTab === "ajustes" && <DashboardSettings />}
+            {activeTab === "settings" && <DashboardSettings />}
           </div>
         </div>
       </div>

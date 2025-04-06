@@ -12,7 +12,7 @@ import { useSearchParams } from 'react-router-dom';
 const properties = [
   {
     id: '1',
-    title: 'Villa Moderna Frente a la Playa',
+    title: 'Modern Beachfront Villa',
     location: 'Malibu, California',
     price: 2950000,
     bedrooms: 4,
@@ -25,7 +25,7 @@ const properties = [
   },
   {
     id: '2',
-    title: 'Apartamento de Lujo Frente al Mar',
+    title: 'Luxury Oceanfront Apartment',
     location: 'Miami Beach, Florida',
     price: 1875000,
     bedrooms: 3,
@@ -34,11 +34,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     featured: true,
     forSale: true,
-    type: 'Apartamento'
+    type: 'Apartment'
   },
   {
     id: '3',
-    title: 'Refugio Costero con Piscina',
+    title: 'Coastal Retreat with Pool',
     location: 'Naples, Florida',
     price: 1450000,
     bedrooms: 3,
@@ -47,11 +47,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80',
     featured: false,
     forSale: false,
-    type: 'Casa'
+    type: 'House'
   },
   {
     id: '4',
-    title: 'Ático con Vista al Océano',
+    title: 'Ocean View Penthouse',
     location: 'La Jolla, California',
     price: 3200000,
     bedrooms: 4,
@@ -60,11 +60,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     featured: false,
     forSale: true,
-    type: 'Ático'
+    type: 'Penthouse'
   },
   {
     id: '5',
-    title: 'Cabaña junto a la Playa',
+    title: 'Beachside Cottage',
     location: 'Santa Monica, California',
     price: 1250000,
     bedrooms: 2,
@@ -73,11 +73,11 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     featured: false,
     forSale: true,
-    type: 'Cabaña'
+    type: 'Cottage'
   },
   {
     id: '6',
-    title: 'Condominio con Vista a la Marina',
+    title: 'Marina View Condo',
     location: 'San Diego, California',
     price: 895000,
     bedrooms: 2,
@@ -86,29 +86,29 @@ const properties = [
     image: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80',
     featured: false,
     forSale: true,
-    type: 'Condominio'
+    type: 'Condo'
   }
 ];
 
-// Lista completa de tipos de propiedad
+// Complete list of property types
 const propertyTypes = [
   { id: 'villa', label: 'Villa' },
-  { id: 'apartamento', label: 'Apartamento' },
-  { id: 'atico', label: 'Ático' },
-  { id: 'casa', label: 'Casa' },
-  { id: 'chalet', label: 'Chalet' },
-  { id: 'adosado', label: 'Adosado' },
-  { id: 'piso', label: 'Piso' },
-  { id: 'parcela', label: 'Parcela' },
-  { id: 'terreno', label: 'Terreno' },
-  { id: 'local', label: 'Local Comercial' }
+  { id: 'apartment', label: 'Apartment' },
+  { id: 'penthouse', label: 'Penthouse' },
+  { id: 'house', label: 'House' },
+  { id: 'cottage', label: 'Cottage' },
+  { id: 'townhouse', label: 'Townhouse' },
+  { id: 'condo', label: 'Condo' },
+  { id: 'land', label: 'Land' },
+  { id: 'plot', label: 'Plot' },
+  { id: 'commercial', label: 'Commercial' }
 ];
 
-// Lista de ubicaciones
+// List of locations
 const locations = [
   { id: 'malibu', label: 'Malibu' },
   { id: 'miami', label: 'Miami' },
-  { id: 'hamptons', label: 'Los Hamptons' },
+  { id: 'hamptons', label: 'The Hamptons' },
   { id: 'newportBeach', label: 'Newport Beach' },
   { id: 'sanDiego', label: 'San Diego' },
   { id: 'outerBanks', label: 'Outer Banks' }
@@ -127,7 +127,7 @@ const PropertiesPage = () => {
   const [sortBy, setSortBy] = useState('default');
   const [filteredProperties, setFilteredProperties] = useState(properties);
   
-  // Aplicar parámetros de búsqueda de la URL al cargar la página
+  // Apply search parameters from URL when loading the page
   useEffect(() => {
     const typeParam = searchParams.get('type');
     const locationParam = searchParams.get('location');
@@ -135,31 +135,31 @@ const PropertiesPage = () => {
     
     const newFilters = { ...filters };
     
-    // Aplicar tipo de propiedad si existe en la URL
+    // Apply property type if it exists in URL
     if (typeParam) {
-      // Encontrar el tipo de propiedad correspondiente por ID
+      // Find corresponding property type by ID
       const foundType = propertyTypes.find(type => type.id === typeParam);
       if (foundType) {
         newFilters.type = foundType.label;
       }
     }
     
-    // Aplicar ubicación si existe en la URL
+    // Apply location if it exists in URL
     if (locationParam) {
       const foundLocation = locations.find(loc => loc.id === locationParam);
       if (foundLocation) {
-        console.log("Filtrar por ubicación:", foundLocation.label);
-        // Se podría agregar más lógica de filtrado por ubicación si fuera necesario
+        console.log("Filter by location:", foundLocation.label);
+        // Additional location filtering logic could be added if needed
       }
     }
     
-    // Aplicar rango de precios si existe en la URL
+    // Apply price range if it exists in URL
     if (priceParam) {
       const [min, max] = priceParam.split('-').map(Number);
       if (!isNaN(min) && !isNaN(max)) {
         setPriceRange([min, max]);
       } else if (!isNaN(min) && priceParam.includes('+')) {
-        // Caso especial para rango "$3,000,000+"
+        // Special case for "$3,000,000+" range
         setPriceRange([min, 5000000]);
       }
     }
@@ -167,53 +167,53 @@ const PropertiesPage = () => {
     setFilters(newFilters);
   }, [searchParams]);
   
-  // Aplicar filtros y ordenar propiedades
+  // Apply filters and sort properties
   useEffect(() => {
     let result = [...properties];
     
-    console.log("Filtrando con:", filters);
+    console.log("Filtering with:", filters);
     
-    // Filtrar por tipo
+    // Filter by type
     if (filters.type) {
-      console.log(`Filtrando por tipo: "${filters.type}"`);
+      console.log(`Filtering by type: "${filters.type}"`);
       result = result.filter(property => {
         const matches = property.type.toLowerCase() === filters.type.toLowerCase();
         return matches;
       });
     }
     
-    // Filtrar por estado (venta/alquiler)
+    // Filter by status (sale/rent)
     if (filters.status) {
       result = result.filter(property => 
         filters.status === 'sale' ? property.forSale : !property.forSale
       );
     }
     
-    // Filtrar por dormitorios
+    // Filter by bedrooms
     if (filters.bedrooms) {
       result = result.filter(property => property.bedrooms >= parseInt(filters.bedrooms));
     }
     
-    // Filtrar por baños
+    // Filter by bathrooms
     if (filters.bathrooms) {
       result = result.filter(property => property.bathrooms >= parseInt(filters.bathrooms));
     }
     
-    // Filtrar por rango de precio
+    // Filter by price range
     result = result.filter(property => 
       property.price >= priceRange[0] && property.price <= priceRange[1]
     );
     
-    console.log("Propiedades filtradas:", result.length);
+    console.log("Filtered properties:", result.length);
     
-    // Ordenar propiedades
+    // Sort properties
     if (sortBy === 'price-asc') {
       result.sort((a, b) => a.price - b.price);
     } else if (sortBy === 'price-desc') {
       result.sort((a, b) => b.price - a.price);
     } else if (sortBy === 'newest') {
-      // En datos reales, usaríamos una fecha de creación
-      // Aquí ordenamos por ID (asumiendo que los IDs más altos son los más recientes)
+      // In real data, we would use a creation date
+      // Here we sort by ID (assuming higher IDs are more recent)
       result.sort((a, b) => parseInt(b.id) - parseInt(a.id));
     }
     
@@ -233,9 +233,9 @@ const PropertiesPage = () => {
   };
   
   const handleSearch = () => {
-    // La búsqueda ya se aplica automáticamente con useEffect
-    // Este botón puede servir como una acción visual para el usuario
-    console.log("Búsqueda aplicada con filtros:", filters);
+    // Search is automatically applied with useEffect
+    // This button serves as a visual action for the user
+    console.log("Search applied with filters:", filters);
   };
 
   return (
@@ -255,9 +255,9 @@ const PropertiesPage = () => {
           </div>
           
           <div className="relative container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Nuestras Propiedades</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Properties</h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Explora nuestra colección de propiedades costeras premium en las ubicaciones más deseables.
+              Explore our collection of premium coastal properties in the most desirable locations.
             </p>
           </div>
         </div>
@@ -267,18 +267,18 @@ const PropertiesPage = () => {
           <div className="container mx-auto px-4">
             {/* Filters */}
             <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-              <h2 className="text-xl font-semibold mb-4">Encuentra tu Propiedad Perfecta</h2>
+              <h2 className="text-xl font-semibold mb-4">Find Your Perfect Property</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de Propiedad</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
                   <select
                     name="type"
                     value={filters.type}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">Todos los Tipos</option>
+                    <option value="">All Types</option>
                     {propertyTypes.map(type => (
                       <option key={type.id} value={type.id}>{type.label}</option>
                     ))}
@@ -286,28 +286,28 @@ const PropertiesPage = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                   <select
                     name="status"
                     value={filters.status}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">Todos los Estados</option>
-                    <option value="sale">En Venta</option>
-                    <option value="rent">En Alquiler</option>
+                    <option value="">All Statuses</option>
+                    <option value="sale">For Sale</option>
+                    <option value="rent">For Rent</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Habitaciones</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
                   <select
                     name="bedrooms"
                     value={filters.bedrooms}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">Cualquier</option>
+                    <option value="">Any</option>
                     <option value="1">1+</option>
                     <option value="2">2+</option>
                     <option value="3">3+</option>
@@ -316,14 +316,14 @@ const PropertiesPage = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Baños</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Bathrooms</label>
                   <select
                     name="bathrooms"
                     value={filters.bathrooms}
                     onChange={handleFilterChange}
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
-                    <option value="">Cualquier</option>
+                    <option value="">Any</option>
                     <option value="1">1+</option>
                     <option value="2">2+</option>
                     <option value="3">3+</option>
@@ -333,7 +333,7 @@ const PropertiesPage = () => {
               
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Rango de Precio: ${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()}
+                  Price Range: ${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()}
                 </label>
                 <Slider 
                   defaultValue={priceRange}
@@ -347,7 +347,7 @@ const PropertiesPage = () => {
               <div className="flex justify-end">
                 <Button className="bg-coastal-600 hover:bg-coastal-700" onClick={handleSearch}>
                   <Search className="h-4 w-4 mr-2" />
-                  Buscar Propiedades
+                  Search Properties
                 </Button>
               </div>
             </div>
@@ -355,7 +355,7 @@ const PropertiesPage = () => {
             {/* Results Controls and Properties Grid/List */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-8">
               <p className="text-gray-600 mb-4 md:mb-0">
-                Mostrando <span className="font-medium">{filteredProperties.length}</span> propiedades
+                Showing <span className="font-medium">{filteredProperties.length}</span> properties
               </p>
               
               <div className="flex items-center space-x-4">
@@ -373,10 +373,10 @@ const PropertiesPage = () => {
                   value={sortBy}
                   onChange={handleSortChange}
                 >
-                  <option value="default">Ordenación Predeterminada</option>
-                  <option value="price-asc">Precio (Bajo a Alto)</option>
-                  <option value="price-desc">Precio (Alto a Bajo)</option>
-                  <option value="newest">Más Recientes Primero</option>
+                  <option value="default">Default Sorting</option>
+                  <option value="price-asc">Price (Low to High)</option>
+                  <option value="price-desc">Price (High to Low)</option>
+                  <option value="newest">Newest First</option>
                 </select>
               </div>
             </div>
@@ -404,18 +404,18 @@ const PropertiesPage = () => {
                           </div>
                           <div className="flex items-center justify-between border-t border-b border-gray-100 py-3 mb-3">
                             <div className="flex items-center">
-                              <span className="text-sm text-gray-600">{property.bedrooms} Hab</span>
+                              <span className="text-sm text-gray-600">{property.bedrooms} Bed</span>
                             </div>
                             <div className="flex items-center">
-                              <span className="text-sm text-gray-600">{property.bathrooms} Baños</span>
+                              <span className="text-sm text-gray-600">{property.bathrooms} Bath</span>
                             </div>
                             <div className="flex items-center">
-                              <span className="text-sm text-gray-600">{property.area} m²</span>
+                              <span className="text-sm text-gray-600">{property.area} ft²</span>
                             </div>
                           </div>
                           <div className="flex items-center justify-between">
                             <p className="text-coastal-600 font-bold text-xl">${property.price.toLocaleString()}</p>
-                            <Button className="bg-coastal-600 hover:bg-coastal-700">Ver Detalles</Button>
+                            <Button className="bg-coastal-600 hover:bg-coastal-700">View Details</Button>
                           </div>
                         </div>
                       </div>
@@ -426,8 +426,8 @@ const PropertiesPage = () => {
                 ))
               ) : (
                 <div className="col-span-full text-center py-10">
-                  <h3 className="text-xl font-medium text-gray-700 mb-2">No se encontraron propiedades</h3>
-                  <p className="text-gray-500">Intenta ajustar tus filtros para ver más opciones</p>
+                  <h3 className="text-xl font-medium text-gray-700 mb-2">No properties found</h3>
+                  <p className="text-gray-500">Try adjusting your filters to see more options</p>
                 </div>
               )}
             </div>
@@ -435,7 +435,7 @@ const PropertiesPage = () => {
             <div className="mt-12 flex justify-center">
               <nav className="inline-flex rounded-md shadow">
                 <a href="#" className="py-2 px-4 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                  Anterior
+                  Previous
                 </a>
                 <a href="#" className="py-2 px-4 border border-coastal-600 bg-coastal-600 text-sm font-medium text-white">
                   1
@@ -447,7 +447,7 @@ const PropertiesPage = () => {
                   3
                 </a>
                 <a href="#" className="py-2 px-4 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                  Siguiente
+                  Next
                 </a>
               </nav>
             </div>

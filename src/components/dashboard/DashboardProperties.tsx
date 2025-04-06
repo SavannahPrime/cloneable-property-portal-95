@@ -32,99 +32,99 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-// Datos de ejemplo para propiedades
+// Sample properties data
 const propertiesData = [
   {
     id: '1',
-    title: 'Villa Moderna Frente a la Playa',
+    title: 'Modern Beachfront Villa',
     location: 'Malibu, California',
     price: 2950000,
     bedrooms: 4,
     bathrooms: 3.5,
     area: 3200,
     type: 'Villa',
-    status: 'En Venta',
+    status: 'For Sale',
     featured: true,
     images: []
   },
   {
     id: '2',
-    title: 'Apartamento de Lujo Frente al Mar',
+    title: 'Luxury Oceanfront Apartment',
     location: 'Miami Beach, Florida',
     price: 1875000,
     bedrooms: 3,
     bathrooms: 2,
     area: 2100,
-    type: 'Apartamento',
-    status: 'En Venta',
+    type: 'Apartment',
+    status: 'For Sale',
     featured: true,
     images: []
   },
   {
     id: '3',
-    title: 'Refugio Costero con Piscina',
+    title: 'Coastal Retreat with Pool',
     location: 'Naples, Florida',
     price: 1450000,
     bedrooms: 3,
     bathrooms: 2.5,
     area: 2800,
-    type: 'Casa',
-    status: 'En Alquiler',
+    type: 'House',
+    status: 'For Rent',
     featured: false,
     images: []
   },
   {
     id: '4',
-    title: 'Ático Premium con Vista al Océano',
+    title: 'Premium Ocean View Penthouse',
     location: 'San Diego, California',
     price: 2250000,
     bedrooms: 3,
     bathrooms: 3,
     area: 2400,
-    type: 'Ático',
-    status: 'En Venta',
+    type: 'Penthouse',
+    status: 'For Sale',
     featured: false,
     images: []
   },
   {
     id: '5',
-    title: 'Casa de Playa con Acceso Privado',
-    location: 'Outer Banks, Carolina del Norte',
+    title: 'Beach House with Private Access',
+    location: 'Outer Banks, North Carolina',
     price: 1950000,
     bedrooms: 5,
     bathrooms: 4,
     area: 3500,
-    type: 'Casa',
-    status: 'En Venta',
+    type: 'House',
+    status: 'For Sale',
     featured: true,
     images: []
   }
 ];
 
-// Actualizada según la imagen proporcionada
+// Updated according to the provided image
 const propertyTypes = [
   { id: 'villa', label: 'Villa', icon: Building },
-  { id: 'apartment', label: 'Apartamento', icon: Building2 },
-  { id: 'atico', label: 'Ático', icon: Building2 },
-  { id: 'casa', label: 'Casa', icon: Home },
-  { id: 'chalet', label: 'Chalet', icon: Home },
-  { id: 'adosado', label: 'Adosado', icon: Building },
-  { id: 'piso', label: 'Piso', icon: Building2 },
-  { id: 'parcela', label: 'Parcela', icon: Building },
-  { id: 'terreno', label: 'Terreno', icon: Building },
-  { id: 'local', label: 'Local Comercial', icon: Building },
+  { id: 'apartment', label: 'Apartment', icon: Building2 },
+  { id: 'penthouse', label: 'Penthouse', icon: Building2 },
+  { id: 'house', label: 'House', icon: Home },
+  { id: 'cottage', label: 'Cottage', icon: Home },
+  { id: 'townhouse', label: 'Townhouse', icon: Building },
+  { id: 'condo', label: 'Condo', icon: Building2 },
+  { id: 'land', label: 'Land', icon: Building },
+  { id: 'plot', label: 'Plot', icon: Building },
+  { id: 'commercial', label: 'Commercial', icon: Building },
 ];
 
 const propertyStatus = [
-  { id: 'sale', label: 'En Venta' },
-  { id: 'rent', label: 'En Alquiler' },
-  { id: 'reserved', label: 'Reservado' },
-  { id: 'sold', label: 'Vendido' }
+  { id: 'sale', label: 'For Sale' },
+  { id: 'rent', label: 'For Rent' },
+  { id: 'reserved', label: 'Reserved' },
+  { id: 'sold', label: 'Sold' }
 ];
 
 const DashboardProperties = () => {
   const { toast } = useToast();
-  const [activeTab, setActiveTab] = useState("listado");
+  const [activeTab, setActiveTab] = useState("listings");
   const [searchTerm, setSearchTerm] = useState('');
   const [properties, setProperties] = useState(propertiesData);
   const [selectedProperty, setSelectedProperty] = useState<null | any>(null);
@@ -183,8 +183,8 @@ const DashboardProperties = () => {
     if (selectedProperty) {
       setProperties(properties.filter(p => p.id !== selectedProperty.id));
       toast({
-        title: "Propiedad eliminada",
-        description: `La propiedad "${selectedProperty.title}" ha sido eliminada correctamente.`,
+        title: "Property deleted",
+        description: `The property "${selectedProperty.title}" has been successfully deleted.`,
       });
       setShowDeleteDialog(false);
       setSelectedProperty(null);
@@ -200,8 +200,8 @@ const DashboardProperties = () => {
     }));
     
     toast({
-      title: property.featured ? "Propiedad eliminada de destacados" : "Propiedad añadida a destacados",
-      description: `La propiedad "${property.title}" ha sido ${property.featured ? "eliminada de" : "añadida a"} destacados.`,
+      title: property.featured ? "Property removed from featured" : "Property added to featured",
+      description: `The property "${property.title}" has been ${property.featured ? "removed from" : "added to"} featured properties.`,
     });
   };
 
@@ -231,8 +231,8 @@ const DashboardProperties = () => {
       }));
       
       toast({
-        title: "Imágenes cargadas",
-        description: `Se han cargado ${e.target.files.length} nueva(s) imagen(es).`
+        title: "Images uploaded",
+        description: `${e.target.files.length} new image(s) have been uploaded.`
       });
     }
   };
@@ -257,8 +257,8 @@ const DashboardProperties = () => {
       }));
       
       toast({
-        title: "Propiedad actualizada",
-        description: "Los cambios se han guardado correctamente."
+        title: "Property updated",
+        description: "Changes have been saved successfully."
       });
       
       setShowEditDialog(false);
@@ -276,8 +276,8 @@ const DashboardProperties = () => {
     setProperties([...properties, newProperty]);
     
     toast({
-      title: "Propiedad añadida",
-      description: "La propiedad ha sido añadida correctamente."
+      title: "Property added",
+      description: "The property has been added successfully."
     });
     
     setFormData({
@@ -299,93 +299,93 @@ const DashboardProperties = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Gestión de Propiedades</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Property Management</h1>
         <Dialog>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
-              <Plus className="h-4 w-4" /> Añadir Propiedad
+              <Plus className="h-4 w-4" /> Add Property
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-3xl">
             <DialogHeader>
-              <DialogTitle>Añadir Nueva Propiedad</DialogTitle>
+              <DialogTitle>Add New Property</DialogTitle>
               <DialogDescription>
-                Complete los detalles para añadir una nueva propiedad
+                Complete the details to add a new property
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
-                <Label htmlFor="title">Título</Label>
+                <Label htmlFor="title">Title</Label>
                 <Input 
                   id="title" 
                   value={formData.title} 
                   onChange={handleInputChange} 
-                  placeholder="Título de la propiedad"
+                  placeholder="Property title"
                 />
               </div>
               
               <div className="grid gap-2">
-                <Label htmlFor="location">Ubicación</Label>
+                <Label htmlFor="location">Location</Label>
                 <Input 
                   id="location" 
                   value={formData.location} 
                   onChange={handleInputChange} 
-                  placeholder="Ubicación de la propiedad"
+                  placeholder="Property location"
                 />
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="price">Precio</Label>
+                  <Label htmlFor="price">Price</Label>
                   <Input 
                     id="price" 
                     type="number"
                     value={formData.price} 
                     onChange={handleInputChange} 
-                    placeholder="Precio"
+                    placeholder="Price"
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="area">Área (m²)</Label>
+                  <Label htmlFor="area">Area (sq ft)</Label>
                   <Input 
                     id="area" 
                     type="number"
                     value={formData.area} 
                     onChange={handleInputChange} 
-                    placeholder="Área en m²"
+                    placeholder="Area in sq ft"
                   />
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="bedrooms">Habitaciones</Label>
+                  <Label htmlFor="bedrooms">Bedrooms</Label>
                   <Input 
                     id="bedrooms" 
                     type="number"
                     value={formData.bedrooms} 
                     onChange={handleInputChange} 
-                    placeholder="Número de habitaciones"
+                    placeholder="Number of bedrooms"
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="bathrooms">Baños</Label>
+                  <Label htmlFor="bathrooms">Bathrooms</Label>
                   <Input 
                     id="bathrooms" 
                     type="number"
                     value={formData.bathrooms} 
                     onChange={handleInputChange} 
-                    placeholder="Número de baños"
+                    placeholder="Number of bathrooms"
                   />
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="type">Tipo de Propiedad</Label>
+                  <Label htmlFor="type">Property Type</Label>
                   <Select value={formData.type} onValueChange={(value) => handleSelectChange('type', value)}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar tipo" />
+                      <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                     <SelectContent>
                       {propertyTypes.map(type => (
@@ -397,10 +397,10 @@ const DashboardProperties = () => {
                   </Select>
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="status">Estado</Label>
+                  <Label htmlFor="status">Status</Label>
                   <Select value={formData.status} onValueChange={(value) => handleSelectChange('status', value)}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Seleccionar estado" />
+                      <SelectValue placeholder="Select status" />
                     </SelectTrigger>
                     <SelectContent>
                       {propertyStatus.map(status => (
@@ -414,25 +414,25 @@ const DashboardProperties = () => {
               </div>
               
               <div className="grid gap-2">
-                <Label htmlFor="description">Descripción</Label>
+                <Label htmlFor="description">Description</Label>
                 <Textarea 
                   id="description" 
                   value={formData.description} 
                   onChange={handleInputChange} 
-                  placeholder="Descripción detallada de la propiedad"
+                  placeholder="Detailed description of the property"
                   rows={4}
                 />
               </div>
               
               <div className="grid gap-2">
-                <Label htmlFor="images">Imágenes</Label>
+                <Label htmlFor="images">Images</Label>
                 <div className="flex items-center gap-4">
                   <label 
                     htmlFor="image-upload" 
                     className="cursor-pointer bg-gray-100 hover:bg-gray-200 transition-colors px-4 py-2 rounded flex items-center gap-2"
                   >
                     <Upload className="h-4 w-4" />
-                    Subir Imágenes
+                    Upload Images
                   </label>
                   <Input 
                     id="image-upload" 
@@ -443,7 +443,7 @@ const DashboardProperties = () => {
                     className="hidden"
                   />
                   <span className="text-sm text-gray-500">
-                    {formData.images.length} imagen(es) seleccionada(s)
+                    {formData.images.length} image(s) selected
                   </span>
                 </div>
                 
@@ -453,7 +453,7 @@ const DashboardProperties = () => {
                       <div key={index} className="relative">
                         <img 
                           src={image} 
-                          alt={`Imagen ${index + 1}`} 
+                          alt={`Image ${index + 1}`} 
                           className="h-24 w-full object-cover rounded-lg"
                         />
                         <button
@@ -471,27 +471,27 @@ const DashboardProperties = () => {
             </div>
             <DialogFooter>
               <DialogClose asChild>
-                <Button variant="outline">Cancelar</Button>
+                <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <Button onClick={handleAddProperty}>Añadir Propiedad</Button>
+              <Button onClick={handleAddProperty}>Add Property</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
 
-      <Tabs defaultValue="listado" value={activeTab} onValueChange={setActiveTab} className="mb-6">
+      <Tabs defaultValue="listings" value={activeTab} onValueChange={setActiveTab} className="mb-6">
         <TabsList>
-          <TabsTrigger value="listado">Listado</TabsTrigger>
-          <TabsTrigger value="categorias">Categorías</TabsTrigger>
-          <TabsTrigger value="destacadas">Destacadas</TabsTrigger>
+          <TabsTrigger value="listings">Listings</TabsTrigger>
+          <TabsTrigger value="categories">Categories</TabsTrigger>
+          <TabsTrigger value="featured">Featured</TabsTrigger>
         </TabsList>
         
-        <TabsContent value="listado" className="space-y-4">
+        <TabsContent value="listings" className="space-y-4">
           <div className="flex justify-between items-center">
             <div className="relative w-full max-w-sm">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="Buscar propiedades..."
+                placeholder="Search properties..."
                 className="pl-10"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -504,10 +504,10 @@ const DashboardProperties = () => {
               onValueChange={setFilterType}
             >
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Filtrar por tipo" />
+                <SelectValue placeholder="Filter by type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todos los tipos</SelectItem>
+                <SelectItem value="all">All types</SelectItem>
                 {propertyTypes.map(type => (
                   <SelectItem key={type.id} value={type.id}>
                     {type.label}
@@ -522,13 +522,13 @@ const DashboardProperties = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Título</TableHead>
-                    <TableHead>Ubicación</TableHead>
-                    <TableHead>Tipo</TableHead>
-                    <TableHead>Precio</TableHead>
-                    <TableHead>Estado</TableHead>
-                    <TableHead className="text-center">Destacado</TableHead>
-                    <TableHead className="text-right">Acciones</TableHead>
+                    <TableHead>Title</TableHead>
+                    <TableHead>Location</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Price</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="text-center">Featured</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -539,7 +539,7 @@ const DashboardProperties = () => {
                       <TableCell>{property.type}</TableCell>
                       <TableCell>${property.price.toLocaleString()}</TableCell>
                       <TableCell>
-                        <Badge variant={property.status === 'En Venta' ? 'default' : 'secondary'}>
+                        <Badge variant={property.status === 'For Sale' ? 'default' : 'secondary'}>
                           {property.status}
                         </Badge>
                       </TableCell>
@@ -572,53 +572,53 @@ const DashboardProperties = () => {
                               </DialogHeader>
                               <div className="grid grid-cols-2 gap-4 py-4">
                                 <div>
-                                  <h3 className="font-medium mb-2">Información General</h3>
+                                  <h3 className="font-medium mb-2">General Information</h3>
                                   <div className="space-y-2">
                                     <div className="flex justify-between">
-                                      <span className="text-gray-500">Tipo:</span>
+                                      <span className="text-gray-500">Type:</span>
                                       <span>{property.type}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-500">Precio:</span>
+                                      <span className="text-gray-500">Price:</span>
                                       <span>${property.price.toLocaleString()}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-500">Estado:</span>
+                                      <span className="text-gray-500">Status:</span>
                                       <span>{property.status}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-500">Destacado:</span>
-                                      <span>{property.featured ? 'Sí' : 'No'}</span>
+                                      <span className="text-gray-500">Featured:</span>
+                                      <span>{property.featured ? 'Yes' : 'No'}</span>
                                     </div>
                                   </div>
                                 </div>
                                 <div>
-                                  <h3 className="font-medium mb-2">Características</h3>
+                                  <h3 className="font-medium mb-2">Features</h3>
                                   <div className="space-y-2">
                                     <div className="flex justify-between">
-                                      <span className="text-gray-500">Habitaciones:</span>
+                                      <span className="text-gray-500">Bedrooms:</span>
                                       <span>{property.bedrooms}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-500">Baños:</span>
+                                      <span className="text-gray-500">Bathrooms:</span>
                                       <span>{property.bathrooms}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-500">Área:</span>
-                                      <span>{property.area} m²</span>
+                                      <span className="text-gray-500">Area:</span>
+                                      <span>{property.area} sq ft</span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               {property.images && property.images.length > 0 && (
                                 <div>
-                                  <h3 className="font-medium mb-2">Imágenes</h3>
+                                  <h3 className="font-medium mb-2">Images</h3>
                                   <div className="grid grid-cols-3 gap-4">
                                     {property.images.map((img: string, index: number) => (
                                       <img 
                                         key={index} 
                                         src={img} 
-                                        alt={`Imagen ${index + 1}`}
+                                        alt={`Image ${index + 1}`}
                                         className="h-40 w-full object-cover rounded-lg" 
                                       />
                                     ))}
@@ -627,11 +627,11 @@ const DashboardProperties = () => {
                               )}
                               <DialogFooter>
                                 <DialogClose asChild>
-                                  <Button variant="outline">Cerrar</Button>
+                                  <Button variant="outline">Close</Button>
                                 </DialogClose>
                                 <Button onClick={() => {
                                   handleEditProperty(property);
-                                }}>Editar</Button>
+                                }}>Edit</Button>
                               </DialogFooter>
                             </DialogContent>
                           </Dialog>
@@ -659,20 +659,20 @@ const DashboardProperties = () => {
               </Table>
             </CardContent>
             <CardFooter className="flex items-center justify-between border-t px-6 py-3">
-              <p className="text-sm text-gray-500">Mostrando {filteredProperties.length} de {properties.length} propiedades</p>
+              <p className="text-sm text-gray-500">Showing {filteredProperties.length} of {properties.length} properties</p>
               <div className="flex items-center space-x-2">
                 <Button variant="outline" size="sm" disabled>
-                  Anterior
+                  Previous
                 </Button>
                 <Button variant="outline" size="sm">
-                  Siguiente
+                  Next
                 </Button>
               </div>
             </CardFooter>
           </Card>
         </TabsContent>
         
-        <TabsContent value="categorias">
+        <TabsContent value="categories">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {propertyTypes.map((type) => (
               <Card key={type.id}>
@@ -689,7 +689,7 @@ const DashboardProperties = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-gray-500">
-                    Gestiona todas las propiedades de tipo {type.label.toLowerCase()}.
+                    Manage all {type.label.toLowerCase()} properties.
                   </p>
                 </CardContent>
                 <CardFooter>
@@ -697,15 +697,15 @@ const DashboardProperties = () => {
                     variant="outline" 
                     className="w-full"
                     onClick={() => {
-                      setActiveTab("listado");
+                      setActiveTab("listings");
                       setFilterType(type.id);
                       toast({
-                        title: `Propiedades de tipo ${type.label}`,
-                        description: `Mostrando propiedades de tipo ${type.label}.`
+                        title: `${type.label} Properties`,
+                        description: `Showing ${type.label} properties.`
                       });
                     }}
                   >
-                    Ver {type.label}s
+                    View {type.label}s
                   </Button>
                 </CardFooter>
               </Card>
@@ -713,23 +713,23 @@ const DashboardProperties = () => {
           </div>
         </TabsContent>
         
-        <TabsContent value="destacadas">
+        <TabsContent value="featured">
           <Card>
             <CardHeader>
-              <CardTitle>Propiedades Destacadas</CardTitle>
+              <CardTitle>Featured Properties</CardTitle>
               <CardDescription>
-                Gestiona las propiedades que aparecen en la sección destacada de la página de inicio.
+                Manage properties that appear in the featured section of the homepage.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Título</TableHead>
-                    <TableHead>Ubicación</TableHead>
-                    <TableHead>Tipo</TableHead>
-                    <TableHead>Precio</TableHead>
-                    <TableHead className="text-right">Acciones</TableHead>
+                    <TableHead>Title</TableHead>
+                    <TableHead>Location</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Price</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -747,7 +747,7 @@ const DashboardProperties = () => {
                             size="sm"
                             onClick={() => handleToggleFeatured(property)}
                           >
-                            Quitar de destacados
+                            Remove from featured
                           </Button>
                         </TableCell>
                       </TableRow>
@@ -759,88 +759,88 @@ const DashboardProperties = () => {
         </TabsContent>
       </Tabs>
       
-      {/* Diálogo para editar propiedades */}
+      {/* Dialog for editing properties */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Editar Propiedad</DialogTitle>
+            <DialogTitle>Edit Property</DialogTitle>
             <DialogDescription>
-              Modifica los detalles de esta propiedad
+              Modify the details of this property
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="title">Título</Label>
+              <Label htmlFor="title">Title</Label>
               <Input 
                 id="title" 
                 value={formData.title} 
                 onChange={handleInputChange} 
-                placeholder="Título de la propiedad"
+                placeholder="Property title"
               />
             </div>
             
             <div className="grid gap-2">
-              <Label htmlFor="location">Ubicación</Label>
+              <Label htmlFor="location">Location</Label>
               <Input 
                 id="location" 
                 value={formData.location} 
                 onChange={handleInputChange} 
-                placeholder="Ubicación de la propiedad"
+                placeholder="Property location"
               />
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="price">Precio</Label>
+                <Label htmlFor="price">Price</Label>
                 <Input 
                   id="price" 
                   type="number"
                   value={formData.price} 
                   onChange={handleInputChange} 
-                  placeholder="Precio"
+                  placeholder="Price"
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="area">Área (m²)</Label>
+                <Label htmlFor="area">Area (sq ft)</Label>
                 <Input 
                   id="area" 
                   type="number"
                   value={formData.area} 
                   onChange={handleInputChange} 
-                  placeholder="Área en m²"
+                  placeholder="Area in sq ft"
                 />
               </div>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="bedrooms">Habitaciones</Label>
+                <Label htmlFor="bedrooms">Bedrooms</Label>
                 <Input 
                   id="bedrooms" 
                   type="number"
                   value={formData.bedrooms} 
                   onChange={handleInputChange} 
-                  placeholder="Número de habitaciones"
+                  placeholder="Number of bedrooms"
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="bathrooms">Baños</Label>
+                <Label htmlFor="bathrooms">Bathrooms</Label>
                 <Input 
                   id="bathrooms" 
                   type="number"
                   value={formData.bathrooms} 
                   onChange={handleInputChange} 
-                  placeholder="Número de baños"
+                  placeholder="Number of bathrooms"
                 />
               </div>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="type">Tipo de Propiedad</Label>
+                <Label htmlFor="type">Property Type</Label>
                 <Select value={formData.type} onValueChange={(value) => handleSelectChange('type', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Seleccionar tipo" />
+                    <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>
                     {propertyTypes.map(type => (
@@ -852,10 +852,10 @@ const DashboardProperties = () => {
                 </Select>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="status">Estado</Label>
+                <Label htmlFor="status">Status</Label>
                 <Select value={formData.status} onValueChange={(value) => handleSelectChange('status', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Seleccionar estado" />
+                    <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                   <SelectContent>
                     {propertyStatus.map(status => (
@@ -869,25 +869,25 @@ const DashboardProperties = () => {
             </div>
             
             <div className="grid gap-2">
-              <Label htmlFor="description">Descripción</Label>
+              <Label htmlFor="description">Description</Label>
               <Textarea 
                 id="description" 
                 value={formData.description} 
                 onChange={handleInputChange} 
-                placeholder="Descripción detallada de la propiedad"
+                placeholder="Detailed description of the property"
                 rows={4}
               />
             </div>
             
             <div className="grid gap-2">
-              <Label htmlFor="images">Imágenes</Label>
+              <Label htmlFor="images">Images</Label>
               <div className="flex items-center gap-4">
                 <label 
                   htmlFor="image-edit-upload" 
                   className="cursor-pointer bg-gray-100 hover:bg-gray-200 transition-colors px-4 py-2 rounded flex items-center gap-2"
                 >
                   <Upload className="h-4 w-4" />
-                  Subir Imágenes
+                  Upload Images
                 </label>
                 <Input 
                   id="image-edit-upload" 
@@ -898,7 +898,7 @@ const DashboardProperties = () => {
                   className="hidden"
                 />
                 <span className="text-sm text-gray-500">
-                  {formData.images.length} imagen(es) seleccionada(s)
+                  {formData.images.length} image(s) selected
                 </span>
               </div>
               
@@ -908,7 +908,7 @@ const DashboardProperties = () => {
                     <div key={index} className="relative">
                       <img 
                         src={image} 
-                        alt={`Imagen ${index + 1}`} 
+                        alt={`Image ${index + 1}`} 
                         className="h-24 w-full object-cover rounded-lg"
                       />
                       <button
@@ -926,27 +926,27 @@ const DashboardProperties = () => {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancelar</Button>
+              <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button onClick={handleSaveChanges}>Guardar Cambios</Button>
+            <Button onClick={handleSaveChanges}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
       
-      {/* Diálogo para confirmar eliminación */}
+      {/* Dialog for confirming deletion */}
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>¿Estás seguro?</AlertDialogTitle>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              Esta acción no se puede deshacer. Esta eliminará permanentemente la propiedad
-              "{selectedProperty?.title}" de la base de datos.
+              This action cannot be undone. This will permanently delete the property
+              "{selectedProperty?.title}" from the database.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={confirmDelete} className="bg-red-600 hover:bg-red-700">
-              Eliminar
+              Delete
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
