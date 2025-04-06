@@ -1,5 +1,5 @@
 
-import { Heart, MapPin, Bed, Bath, SquareFeet } from 'lucide-react';
+import { Heart, MapPin, Bed, Bath, SquareIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -92,7 +92,7 @@ const PropertyCard = ({
                 <span className="text-sm text-gray-600">{bathrooms} Baths</span>
               </div>
               <div className="flex items-center">
-                <SquareFeet className="h-4 w-4 text-gray-500 mr-1" />
+                <SquareIcon className="h-4 w-4 text-gray-500 mr-1" />
                 <span className="text-sm text-gray-600">{area} sq ft</span>
               </div>
             </div>

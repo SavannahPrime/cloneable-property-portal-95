@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Heart, Share, MapPin, Bed, Bath, SquareFeet, Car, Camera, Grid, CalendarClock, Info } from 'lucide-react';
+import { Heart, Share, MapPin, Bed, Bath, SquareIcon, Car, Camera, Grid, CalendarClock, Info } from 'lucide-react';
 import ContactSection from '@/components/ContactSection';
 import PropertyCard from '@/components/PropertyCard';
 
@@ -167,7 +167,7 @@ const PropertyDetailPage = () => {
                       <span className="text-gray-900">{property.bathrooms} <span className="text-gray-600">Bathrooms</span></span>
                     </div>
                     <div className="flex items-center">
-                      <SquareFeet className="h-5 w-5 text-gray-500 mr-2" />
+                      <SquareIcon className="h-5 w-5 text-gray-500 mr-2" />
                       <span className="text-gray-900">{property.area} <span className="text-gray-600">sq ft</span></span>
                     </div>
                     <div className="flex items-center">
