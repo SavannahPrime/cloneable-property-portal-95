@@ -1,11 +1,10 @@
-
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PropertyCard from '@/components/PropertyCard';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
-import { Search, ArrowUpDown, Grid3X3, LayoutList } from 'lucide-react';
+import { Search, Grid3X3, LayoutList } from 'lucide-react';
 
 // Sample properties data
 const properties = [
@@ -89,6 +88,20 @@ const properties = [
   }
 ];
 
+// Lista completa de tipos de propiedad
+const propertyTypes = [
+  { id: 'villa', label: 'Villa' },
+  { id: 'apartamento', label: 'Apartamento' },
+  { id: 'atico', label: 'Ático' },
+  { id: 'casa', label: 'Casa' },
+  { id: 'chalet', label: 'Chalet' },
+  { id: 'adosado', label: 'Adosado' },
+  { id: 'piso', label: 'Piso' },
+  { id: 'parcela', label: 'Parcela' },
+  { id: 'terreno', label: 'Terreno' },
+  { id: 'local', label: 'Local Comercial' }
+];
+
 const PropertiesPage = () => {
   const [gridView, setGridView] = useState(true);
   const [priceRange, setPriceRange] = useState([0, 5000000]);
@@ -148,12 +161,9 @@ const PropertiesPage = () => {
                     className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                   >
                     <option value="">Todos los Tipos</option>
-                    <option value="Villa">Villa</option>
-                    <option value="Apartamento">Apartamento</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Ático">Ático</option>
-                    <option value="Cabaña">Cabaña</option>
-                    <option value="Condominio">Condominio</option>
+                    {propertyTypes.map(type => (
+                      <option key={type.id} value={type.id}>{type.label}</option>
+                    ))}
                   </select>
                 </div>
                 
@@ -224,7 +234,7 @@ const PropertiesPage = () => {
               </div>
             </div>
             
-            {/* Results Controls */}
+            {/* Results Controls and Properties Grid/List */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-8">
               <p className="text-gray-600 mb-4 md:mb-0">
                 Mostrando <span className="font-medium">{properties.length}</span> propiedades
@@ -249,7 +259,6 @@ const PropertiesPage = () => {
               </div>
             </div>
             
-            {/* Properties Grid/List */}
             <div className={gridView ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-6"}>
               {properties.map((property) => (
                 <div key={property.id} className={!gridView ? "bg-white shadow rounded-lg overflow-hidden" : ""}>
@@ -294,7 +303,6 @@ const PropertiesPage = () => {
               ))}
             </div>
             
-            {/* Pagination */}
             <div className="mt-12 flex justify-center">
               <nav className="inline-flex rounded-md shadow">
                 <a href="#" className="py-2 px-4 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
