@@ -310,7 +310,7 @@ const PropertyDetailPage = () => {
               <div className="lg:w-1/3 mt-8 lg:mt-0">
                 {/* Agent Info */}
                 <div className="bg-white rounded-lg shadow p-6 mb-6">
-                  <h3 className="text-xl font-semibold mb-4">Property Agent</h3>
+                  <h3 className="text-xl font-semibold mb-4">Agente Inmobiliario</h3>
                   <div className="flex items-center mb-4">
                     <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
                       <img 
@@ -321,80 +321,80 @@ const PropertyDetailPage = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg">{property.agent.name}</h4>
-                      <p className="text-coastal-600">Coastal Property Specialist</p>
+                      <p className="text-coastal-600">Especialista en Propiedades Costeras</p>
                     </div>
                   </div>
                   
                   <div className="space-y-3 mb-4">
                     <div>
-                      <p className="text-gray-700">Phone</p>
+                      <p className="text-gray-700">Teléfono</p>
                       <a href={`tel:${property.agent.phone}`} className="text-gray-900 font-medium">{property.agent.phone}</a>
                     </div>
                     <div>
-                      <p className="text-gray-700">Email</p>
+                      <p className="text-gray-700">Correo</p>
                       <a href={`mailto:${property.agent.email}`} className="text-gray-900 font-medium">{property.agent.email}</a>
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-coastal-600 hover:bg-coastal-700">Contact Agent</Button>
+                  <Button className="w-full bg-coastal-600 hover:bg-coastal-700">Contactar Agente</Button>
                 </div>
                 
                 {/* Schedule Viewing */}
                 <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-xl font-semibold mb-4">Schedule a Viewing</h3>
+                  <h3 className="text-xl font-semibold mb-4">Programar Visita</h3>
                   <form className="space-y-4">
                     <div>
-                      <label className="block mb-1 text-gray-700">Date</label>
+                      <label className="block mb-1 text-gray-700">Fecha</label>
                       <input 
                         type="date" 
                         className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                       />
                     </div>
                     <div>
-                      <label className="block mb-1 text-gray-700">Time</label>
+                      <label className="block mb-1 text-gray-700">Hora</label>
                       <select className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500">
-                        <option>10:00 AM</option>
-                        <option>11:00 AM</option>
-                        <option>12:00 PM</option>
-                        <option>1:00 PM</option>
-                        <option>2:00 PM</option>
-                        <option>3:00 PM</option>
-                        <option>4:00 PM</option>
+                        <option>10:00</option>
+                        <option>11:00</option>
+                        <option>12:00</option>
+                        <option>13:00</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                        <option>16:00</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block mb-1 text-gray-700">Your Name</label>
+                      <label className="block mb-1 text-gray-700">Nombre</label>
                       <input 
                         type="text"
-                        placeholder="Enter your name"
+                        placeholder="Introduce tu nombre"
                         className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                       />
                     </div>
                     <div>
-                      <label className="block mb-1 text-gray-700">Email</label>
+                      <label className="block mb-1 text-gray-700">Correo</label>
                       <input 
                         type="email"
-                        placeholder="Enter your email"
+                        placeholder="Introduce tu correo"
                         className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                       />
                     </div>
                     <div>
-                      <label className="block mb-1 text-gray-700">Phone</label>
+                      <label className="block mb-1 text-gray-700">Teléfono</label>
                       <input 
                         type="tel"
-                        placeholder="Enter your phone number"
+                        placeholder="Introduce tu número de teléfono"
                         className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                       />
                     </div>
                     <div>
-                      <label className="block mb-1 text-gray-700">Message (Optional)</label>
+                      <label className="block mb-1 text-gray-700">Mensaje (Opcional)</label>
                       <textarea
                         rows={3}
-                        placeholder="Enter your message"
+                        placeholder="Escribe tu mensaje"
                         className="w-full p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
                       ></textarea>
                     </div>
-                    <Button className="w-full bg-coastal-600 hover:bg-coastal-700">Request a Viewing</Button>
+                    <Button className="w-full bg-coastal-600 hover:bg-coastal-700">Solicitar Visita</Button>
                   </form>
                 </div>
               </div>

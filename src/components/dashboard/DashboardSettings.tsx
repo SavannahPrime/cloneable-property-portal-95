@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,11 +7,34 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Save } from 'lucide-react';
+import { Save, Upload } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const DashboardSettings = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("general");
+  
+  const logoFileInputRef = useRef<HTMLInputElement>(null);
+  const faviconFileInputRef = useRef<HTMLInputElement>(null);
+  const ogImageFileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [faviconPreview, setFaviconPreview] = useState<string | null>(null);
+  const [ogImagePreview, setOgImagePreview] = useState<string | null>(null);
+  
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setPreview: React.Dispatch<React.SetStateAction<string | null>>
+  ) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSaveChanges = () => {
     toast({
@@ -67,20 +89,58 @@ const DashboardSettings = () => {
               <div>
                 <Label htmlFor="siteLogo">Logo del Sitio</Label>
                 <div className="mt-1 flex items-center gap-4">
-                  <div className="h-16 w-32 bg-gray-100 flex items-center justify-center rounded border">
-                    <p className="text-gray-500 text-sm">Vista previa del logo</p>
-                  </div>
-                  <Button variant="outline">Cambiar Logo</Button>
+                  {logoPreview ? (
+                    <div className="h-16 w-32 flex items-center justify-center rounded border overflow-hidden bg-white">
+                      <img src={logoPreview} alt="Logo del sitio" className="max-h-full max-w-full object-contain" />
+                    </div>
+                  ) : (
+                    <div className="h-16 w-32 bg-gray-100 flex items-center justify-center rounded border">
+                      <p className="text-gray-500 text-sm">Vista previa del logo</p>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    ref={logoFileInputRef}
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => handleFileChange(e, setLogoPreview)}
+                  />
+                  <Button 
+                    variant="outline" 
+                    onClick={() => logoFileInputRef.current?.click()}
+                  >
+                    <Upload className="h-4 w-4 mr-2" />
+                    Cambiar Logo
+                  </Button>
                 </div>
               </div>
               
               <div>
                 <Label htmlFor="siteFavicon">Favicon</Label>
                 <div className="mt-1 flex items-center gap-4">
-                  <div className="h-8 w-8 bg-gray-100 flex items-center justify-center rounded border">
-                    <p className="text-gray-500 text-xs">Favicon</p>
-                  </div>
-                  <Button variant="outline">Cambiar Favicon</Button>
+                  {faviconPreview ? (
+                    <div className="h-8 w-8 bg-white flex items-center justify-center rounded border overflow-hidden">
+                      <img src={faviconPreview} alt="Favicon" className="max-h-full max-w-full object-contain" />
+                    </div>
+                  ) : (
+                    <div className="h-8 w-8 bg-gray-100 flex items-center justify-center rounded border">
+                      <p className="text-gray-500 text-xs">Favicon</p>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    ref={faviconFileInputRef}
+                    accept="image/x-icon,image/png,image/svg+xml,image/jpeg"
+                    className="hidden"
+                    onChange={(e) => handleFileChange(e, setFaviconPreview)}
+                  />
+                  <Button 
+                    variant="outline" 
+                    onClick={() => faviconFileInputRef.current?.click()}
+                  >
+                    <Upload className="h-4 w-4 mr-2" />
+                    Cambiar Favicon
+                  </Button>
                 </div>
               </div>
               
@@ -116,10 +176,29 @@ const DashboardSettings = () => {
               <div>
                 <Label htmlFor="ogImage">Imagen para Redes Sociales</Label>
                 <div className="mt-1 flex items-center gap-4">
-                  <div className="h-24 w-48 bg-gray-100 flex items-center justify-center rounded border">
-                    <p className="text-gray-500 text-sm">Vista previa de imagen</p>
-                  </div>
-                  <Button variant="outline">Cambiar Imagen</Button>
+                  {ogImagePreview ? (
+                    <div className="h-24 w-48 flex items-center justify-center rounded border overflow-hidden bg-white">
+                      <img src={ogImagePreview} alt="Imagen para redes sociales" className="max-h-full max-w-full object-contain" />
+                    </div>
+                  ) : (
+                    <div className="h-24 w-48 bg-gray-100 flex items-center justify-center rounded border">
+                      <p className="text-gray-500 text-sm">Vista previa de imagen</p>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    ref={ogImageFileInputRef}
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => handleFileChange(e, setOgImagePreview)}
+                  />
+                  <Button 
+                    variant="outline" 
+                    onClick={() => ogImageFileInputRef.current?.click()}
+                  >
+                    <Upload className="h-4 w-4 mr-2" />
+                    Cambiar Imagen
+                  </Button>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Recomendado: 1200x630 pixeles</p>
               </div>
