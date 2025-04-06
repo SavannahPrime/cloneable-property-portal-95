@@ -1,8 +1,18 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
-const testimonials = [
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  quote: string;
+  rating: number;
+}
+
+// Estado inicial de los testimonios
+const defaultTestimonials: Testimonial[] = [
   {
     id: 1,
     name: 'Jennifer López',
@@ -31,6 +41,22 @@ const testimonials = [
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+
+  useEffect(() => {
+    // Intentar cargar los testimonios del localStorage
+    const savedTestimonials = localStorage.getItem('testimonials');
+    if (savedTestimonials) {
+      try {
+        setTestimonials(JSON.parse(savedTestimonials));
+      } catch (error) {
+        console.error('Error al cargar los testimonios:', error);
+        setTestimonials(defaultTestimonials);
+      }
+    } else {
+      setTestimonials(defaultTestimonials);
+    }
+  }, []);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1));
@@ -40,6 +66,9 @@ const Testimonials = () => {
     setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1));
   };
 
+  // Si no hay testimonios, no mostrar nada
+  if (testimonials.length === 0) return null;
+  
   const testimonial = testimonials[currentIndex];
 
   return (

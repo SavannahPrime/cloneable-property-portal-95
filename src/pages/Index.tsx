@@ -1,4 +1,5 @@
 
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import FeaturedProperties from '@/components/FeaturedProperties';
@@ -8,7 +9,7 @@ import Testimonials from '@/components/Testimonials';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
-const Index = () => {
+const Index: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

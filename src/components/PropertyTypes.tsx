@@ -1,7 +1,17 @@
 
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const propertyTypes = [
+// Definimos el tipo para los tipos de propiedades
+interface PropertyType {
+  id: string;
+  title: string;
+  count: number;
+  image: string;
+}
+
+// Estado inicial de los tipos de propiedades
+const defaultPropertyTypes: PropertyType[] = [
   {
     id: 'beachfront',
     title: 'Frente a la Playa',
@@ -29,6 +39,23 @@ const propertyTypes = [
 ];
 
 const PropertyTypes = () => {
+  const [propertyTypes, setPropertyTypes] = useState<PropertyType[]>([]);
+  
+  useEffect(() => {
+    // Intentar cargar los tipos de propiedades del localStorage
+    const savedTypes = localStorage.getItem('propertyTypes');
+    if (savedTypes) {
+      try {
+        setPropertyTypes(JSON.parse(savedTypes));
+      } catch (error) {
+        console.error('Error al cargar los tipos de propiedades:', error);
+        setPropertyTypes(defaultPropertyTypes);
+      }
+    } else {
+      setPropertyTypes(defaultPropertyTypes);
+    }
+  }, []);
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
