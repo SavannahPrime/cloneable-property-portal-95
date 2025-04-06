@@ -6,6 +6,7 @@ import PropertyCard from '@/components/PropertyCard';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Search, Grid3X3, LayoutList } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 
 // Sample properties data
 const properties = [
@@ -91,19 +92,20 @@ const properties = [
 
 // Lista completa de tipos de propiedad
 const propertyTypes = [
-  { id: 'Villa', label: 'Villa' },
-  { id: 'Apartamento', label: 'Apartamento' },
-  { id: 'Atico', label: 'Ático' },
-  { id: 'Casa', label: 'Casa' },
-  { id: 'Chalet', label: 'Chalet' },
-  { id: 'Adosado', label: 'Adosado' },
-  { id: 'Piso', label: 'Piso' },
-  { id: 'Parcela', label: 'Parcela' },
-  { id: 'Terreno', label: 'Terreno' },
-  { id: 'Local', label: 'Local Comercial' }
+  { id: 'villa', label: 'Villa' },
+  { id: 'apartamento', label: 'Apartamento' },
+  { id: 'atico', label: 'Ático' },
+  { id: 'casa', label: 'Casa' },
+  { id: 'chalet', label: 'Chalet' },
+  { id: 'adosado', label: 'Adosado' },
+  { id: 'piso', label: 'Piso' },
+  { id: 'parcela', label: 'Parcela' },
+  { id: 'terreno', label: 'Terreno' },
+  { id: 'local', label: 'Local Comercial' }
 ];
 
 const PropertiesPage = () => {
+  const [searchParams] = useSearchParams();
   const [gridView, setGridView] = useState(true);
   const [priceRange, setPriceRange] = useState([0, 5000000]);
   const [filters, setFilters] = useState({
@@ -114,6 +116,43 @@ const PropertiesPage = () => {
   });
   const [sortBy, setSortBy] = useState('default');
   const [filteredProperties, setFilteredProperties] = useState(properties);
+  
+  // Aplicar parámetros de búsqueda de la URL al cargar la página
+  useEffect(() => {
+    const typeParam = searchParams.get('type');
+    const locationParam = searchParams.get('location');
+    const priceParam = searchParams.get('price');
+    
+    const newFilters = { ...filters };
+    
+    // Aplicar tipo de propiedad si existe en la URL
+    if (typeParam) {
+      // Encontrar el tipo de propiedad correspondiente por ID
+      const foundType = propertyTypes.find(type => type.id === typeParam);
+      if (foundType) {
+        newFilters.type = foundType.label;
+      }
+    }
+    
+    // Aplicar estado (venta/alquiler) basado en la ubicación si existe
+    if (locationParam) {
+      // Aquí podríamos aplicar alguna lógica específica si es necesario
+      console.log("Filtrar por ubicación:", locationParam);
+    }
+    
+    // Aplicar rango de precios si existe en la URL
+    if (priceParam) {
+      const [min, max] = priceParam.split('-').map(Number);
+      if (!isNaN(min) && !isNaN(max)) {
+        setPriceRange([min, max]);
+      } else if (!isNaN(min) && priceParam.includes('+')) {
+        // Caso especial para rango "$3,000,000+"
+        setPriceRange([min, 5000000]);
+      }
+    }
+    
+    setFilters(newFilters);
+  }, [searchParams]);
   
   // Aplicar filtros y ordenar propiedades
   useEffect(() => {
