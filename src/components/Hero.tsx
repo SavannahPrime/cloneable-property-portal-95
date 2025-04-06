@@ -2,6 +2,36 @@
 import { Button } from "@/components/ui/button";
 import { Search } from 'lucide-react';
 
+const propertyTypes = [
+  { id: 'villa', label: 'Villa' },
+  { id: 'apartamento', label: 'Apartamento' },
+  { id: 'atico', label: 'Ático' },
+  { id: 'casa', label: 'Casa' },
+  { id: 'chalet', label: 'Chalet' },
+  { id: 'adosado', label: 'Adosado' },
+  { id: 'piso', label: 'Piso' },
+  { id: 'parcela', label: 'Parcela' },
+  { id: 'terreno', label: 'Terreno' },
+  { id: 'local', label: 'Local Comercial' }
+];
+
+const locations = [
+  { id: 'malibu', label: 'Malibu' },
+  { id: 'miami', label: 'Miami' },
+  { id: 'hamptons', label: 'Los Hamptons' },
+  { id: 'newportBeach', label: 'Newport Beach' },
+  { id: 'sanDiego', label: 'San Diego' },
+  { id: 'outerBanks', label: 'Outer Banks' }
+];
+
+const priceRanges = [
+  { id: '0-500000', label: '$0 - $500,000' },
+  { id: '500000-1000000', label: '$500,000 - $1,000,000' },
+  { id: '1000000-2000000', label: '$1,000,000 - $2,000,000' },
+  { id: '2000000-3000000', label: '$2,000,000 - $3,000,000' },
+  { id: '3000000+', label: '$3,000,000+' }
+];
+
 const Hero = () => {
   return (
     <div className="relative h-[600px] lg:h-[700px] bg-coastal-600 overflow-hidden">
@@ -31,28 +61,25 @@ const Hero = () => {
               <div className="flex-1">
                 <select className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500">
                   <option value="">Tipo de Propiedad</option>
-                  <option value="apartment">Apartamento</option>
-                  <option value="house">Casa</option>
-                  <option value="villa">Villa</option>
-                  <option value="land">Terreno</option>
+                  {propertyTypes.map(type => (
+                    <option key={type.id} value={type.id}>{type.label}</option>
+                  ))}
                 </select>
               </div>
               <div className="flex-1">
                 <select className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500">
                   <option value="">Ubicación</option>
-                  <option value="malibu">Malibu</option>
-                  <option value="miami">Miami</option>
-                  <option value="hamptons">Los Hamptons</option>
-                  <option value="newportBeach">Newport Beach</option>
+                  {locations.map(location => (
+                    <option key={location.id} value={location.id}>{location.label}</option>
+                  ))}
                 </select>
               </div>
               <div className="flex-1">
                 <select className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500">
                   <option value="">Rango de Precio</option>
-                  <option value="0-500000">$0 - $500,000</option>
-                  <option value="500000-1000000">$500,000 - $1,000,000</option>
-                  <option value="1000000-2000000">$1,000,000 - $2,000,000</option>
-                  <option value="2000000+">$2,000,000+</option>
+                  {priceRanges.map(range => (
+                    <option key={range.id} value={range.id}>{range.label}</option>
+                  ))}
                 </select>
               </div>
               <div>
