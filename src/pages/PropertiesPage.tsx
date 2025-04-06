@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PropertyCard from '@/components/PropertyCard';
@@ -90,16 +91,16 @@ const properties = [
 
 // Lista completa de tipos de propiedad
 const propertyTypes = [
-  { id: 'villa', label: 'Villa' },
-  { id: 'apartamento', label: 'Apartamento' },
-  { id: 'atico', label: 'Ático' },
-  { id: 'casa', label: 'Casa' },
-  { id: 'chalet', label: 'Chalet' },
-  { id: 'adosado', label: 'Adosado' },
-  { id: 'piso', label: 'Piso' },
-  { id: 'parcela', label: 'Parcela' },
-  { id: 'terreno', label: 'Terreno' },
-  { id: 'local', label: 'Local Comercial' }
+  { id: 'Villa', label: 'Villa' },
+  { id: 'Apartamento', label: 'Apartamento' },
+  { id: 'Atico', label: 'Ático' },
+  { id: 'Casa', label: 'Casa' },
+  { id: 'Chalet', label: 'Chalet' },
+  { id: 'Adosado', label: 'Adosado' },
+  { id: 'Piso', label: 'Piso' },
+  { id: 'Parcela', label: 'Parcela' },
+  { id: 'Terreno', label: 'Terreno' },
+  { id: 'Local', label: 'Local Comercial' }
 ];
 
 const PropertiesPage = () => {
@@ -111,6 +112,53 @@ const PropertiesPage = () => {
     bedrooms: '',
     bathrooms: ''
   });
+  const [sortBy, setSortBy] = useState('default');
+  const [filteredProperties, setFilteredProperties] = useState(properties);
+  
+  // Aplicar filtros y ordenar propiedades
+  useEffect(() => {
+    let result = [...properties];
+    
+    // Filtrar por tipo
+    if (filters.type) {
+      result = result.filter(property => property.type === filters.type);
+    }
+    
+    // Filtrar por estado (venta/alquiler)
+    if (filters.status) {
+      result = result.filter(property => 
+        filters.status === 'sale' ? property.forSale : !property.forSale
+      );
+    }
+    
+    // Filtrar por dormitorios
+    if (filters.bedrooms) {
+      result = result.filter(property => property.bedrooms >= parseInt(filters.bedrooms));
+    }
+    
+    // Filtrar por baños
+    if (filters.bathrooms) {
+      result = result.filter(property => property.bathrooms >= parseInt(filters.bathrooms));
+    }
+    
+    // Filtrar por rango de precio
+    result = result.filter(property => 
+      property.price >= priceRange[0] && property.price <= priceRange[1]
+    );
+    
+    // Ordenar propiedades
+    if (sortBy === 'price-asc') {
+      result.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'price-desc') {
+      result.sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'newest') {
+      // En datos reales, usaríamos una fecha de creación
+      // Aquí ordenamos por ID (asumiendo que los IDs más altos son los más recientes)
+      result.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+    }
+    
+    setFilteredProperties(result);
+  }, [filters, priceRange, sortBy]);
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -118,6 +166,16 @@ const PropertiesPage = () => {
       ...filters,
       [name]: value
     });
+  };
+  
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value);
+  };
+  
+  const handleSearch = () => {
+    // La búsqueda ya se aplica automáticamente con useEffect
+    // Este botón puede servir como una acción visual para el usuario
+    console.log("Búsqueda aplicada con filtros:", filters);
   };
 
   return (
@@ -227,7 +285,7 @@ const PropertiesPage = () => {
               </div>
               
               <div className="flex justify-end">
-                <Button className="bg-coastal-600 hover:bg-coastal-700">
+                <Button className="bg-coastal-600 hover:bg-coastal-700" onClick={handleSearch}>
                   <Search className="h-4 w-4 mr-2" />
                   Buscar Propiedades
                 </Button>
@@ -237,7 +295,7 @@ const PropertiesPage = () => {
             {/* Results Controls and Properties Grid/List */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-8">
               <p className="text-gray-600 mb-4 md:mb-0">
-                Mostrando <span className="font-medium">{properties.length}</span> propiedades
+                Mostrando <span className="font-medium">{filteredProperties.length}</span> propiedades
               </p>
               
               <div className="flex items-center space-x-4">
@@ -250,7 +308,11 @@ const PropertiesPage = () => {
                   </Button>
                 </div>
                 
-                <select className="p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500">
+                <select 
+                  className="p-2 border border-gray-300 rounded focus:ring-coastal-500 focus:border-coastal-500"
+                  value={sortBy}
+                  onChange={handleSortChange}
+                >
                   <option value="default">Ordenación Predeterminada</option>
                   <option value="price-asc">Precio (Bajo a Alto)</option>
                   <option value="price-desc">Precio (Alto a Bajo)</option>
@@ -260,47 +322,54 @@ const PropertiesPage = () => {
             </div>
             
             <div className={gridView ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-6"}>
-              {properties.map((property) => (
-                <div key={property.id} className={!gridView ? "bg-white shadow rounded-lg overflow-hidden" : ""}>
-                  {!gridView ? (
-                    <div className="flex flex-col md:flex-row">
-                      <div className="md:w-1/3">
-                        <div className="h-64 md:h-full">
-                          <img 
-                            src={property.image} 
-                            alt={property.title}
-                            className="w-full h-full object-cover"
-                          />
+              {filteredProperties.length > 0 ? (
+                filteredProperties.map((property) => (
+                  <div key={property.id} className={!gridView ? "bg-white shadow rounded-lg overflow-hidden" : ""}>
+                    {!gridView ? (
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-1/3">
+                          <div className="h-64 md:h-full">
+                            <img 
+                              src={property.image} 
+                              alt={property.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        </div>
+                        <div className="md:w-2/3 p-6">
+                          <h3 className="text-xl font-semibold text-gray-900 mb-2">{property.title}</h3>
+                          <div className="flex items-center text-gray-600 mb-3">
+                            <Search className="h-4 w-4 mr-1" />
+                            <span>{property.location}</span>
+                          </div>
+                          <div className="flex items-center justify-between border-t border-b border-gray-100 py-3 mb-3">
+                            <div className="flex items-center">
+                              <span className="text-sm text-gray-600">{property.bedrooms} Hab</span>
+                            </div>
+                            <div className="flex items-center">
+                              <span className="text-sm text-gray-600">{property.bathrooms} Baños</span>
+                            </div>
+                            <div className="flex items-center">
+                              <span className="text-sm text-gray-600">{property.area} m²</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <p className="text-coastal-600 font-bold text-xl">${property.price.toLocaleString()}</p>
+                            <Button className="bg-coastal-600 hover:bg-coastal-700">Ver Detalles</Button>
+                          </div>
                         </div>
                       </div>
-                      <div className="md:w-2/3 p-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{property.title}</h3>
-                        <div className="flex items-center text-gray-600 mb-3">
-                          <Search className="h-4 w-4 mr-1" />
-                          <span>{property.location}</span>
-                        </div>
-                        <div className="flex items-center justify-between border-t border-b border-gray-100 py-3 mb-3">
-                          <div className="flex items-center">
-                            <span className="text-sm text-gray-600">{property.bedrooms} Hab</span>
-                          </div>
-                          <div className="flex items-center">
-                            <span className="text-sm text-gray-600">{property.bathrooms} Baños</span>
-                          </div>
-                          <div className="flex items-center">
-                            <span className="text-sm text-gray-600">{property.area} m²</span>
-                          </div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <p className="text-coastal-600 font-bold text-xl">${property.price.toLocaleString()}</p>
-                          <Button className="bg-coastal-600 hover:bg-coastal-700">Ver Detalles</Button>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <PropertyCard {...property} />
-                  )}
+                    ) : (
+                      <PropertyCard {...property} />
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className="col-span-full text-center py-10">
+                  <h3 className="text-xl font-medium text-gray-700 mb-2">No se encontraron propiedades</h3>
+                  <p className="text-gray-500">Intenta ajustar tus filtros para ver más opciones</p>
                 </div>
-              ))}
+              )}
             </div>
             
             <div className="mt-12 flex justify-center">
