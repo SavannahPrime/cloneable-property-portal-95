@@ -28,26 +28,26 @@ interface Testimonial {
 const defaultTestimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Jennifer López',
-    role: 'Propietaria',
+    name: 'Jennifer Lopez',
+    role: 'Property Owner',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
-    quote: 'Costa Moderna Propiedades me ayudó a encontrar mi casa de ensueño frente al mar. Su equipo fue profesional, conocedor e hizo que todo el proceso de compra fuera sin problemas.',
+    quote: 'Global Costa Invest helped me find my dream beachfront home. Their team was professional, knowledgeable, and made the entire buying process seamless.',
     rating: 5
   },
   {
     id: 2,
-    name: 'Miguel Johnson',
-    role: 'Inversionista Inmobiliario',
+    name: 'Michael Johnson',
+    role: 'Real Estate Investor',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
-    quote: 'Como inversor inmobiliario, he trabajado con muchas agencias, pero Costa Moderna destaca por su conocimiento del mercado y servicio excepcional. ¡Altamente recomendado!',
+    quote: 'As a real estate investor, I\'ve worked with many agencies, but Global Costa Invest stands out for their market knowledge and exceptional service. Highly recommended!',
     rating: 5
   },
   {
     id: 3,
     name: 'Emma Wilson',
-    role: 'Compradora primeriza',
+    role: 'First-time Buyer',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1922&q=80',
-    quote: 'El equipo de Costa Moderna Propiedades me guió durante mi primera compra de propiedad con paciencia y experiencia. Encontraron el apartamento costero perfecto dentro de mi presupuesto.',
+    quote: 'The Global Costa Invest team guided me through my first property purchase with patience and expertise. They found the perfect coastal apartment within my budget.',
     rating: 4
   }
 ];
@@ -66,13 +66,13 @@ const DashboardTestimonials = () => {
   });
 
   useEffect(() => {
-    // Cargar los testimonios del localStorage o usar los predeterminados
+    // Load testimonials from localStorage or use defaults
     const savedTestimonials = localStorage.getItem('testimonials');
     if (savedTestimonials) {
       try {
         setTestimonials(JSON.parse(savedTestimonials));
       } catch (error) {
-        console.error('Error al cargar los testimonios:', error);
+        console.error('Error loading testimonials:', error);
         setTestimonials([...defaultTestimonials]);
       }
     } else {
@@ -114,11 +114,11 @@ const DashboardTestimonials = () => {
   };
 
   const handleSaveTestimonial = () => {
-    // Validar que todos los campos estén completos
+    // Validate all fields are complete
     if (!formData.name || !formData.role || !formData.image || !formData.quote) {
       toast({
         title: "Error",
-        description: "Por favor complete todos los campos.",
+        description: "Please complete all fields.",
         variant: "destructive"
       });
       return;
@@ -128,11 +128,11 @@ const DashboardTestimonials = () => {
     const testimonialIndex = testimonials.findIndex(t => t.id === formData.id);
     
     if (testimonialIndex !== -1) {
-      // Actualizar testimonio existente
+      // Update existing testimonial
       updatedTestimonials = [...testimonials];
       updatedTestimonials[testimonialIndex] = formData;
     } else {
-      // Añadir nuevo testimonio
+      // Add new testimonial
       updatedTestimonials = [...testimonials, formData];
     }
 
@@ -140,8 +140,8 @@ const DashboardTestimonials = () => {
     localStorage.setItem('testimonials', JSON.stringify(updatedTestimonials));
 
     toast({
-      title: testimonialIndex !== -1 ? "Testimonio actualizado" : "Testimonio añadido",
-      description: `El testimonio ha sido ${testimonialIndex !== -1 ? "actualizado" : "añadido"} correctamente.`
+      title: testimonialIndex !== -1 ? "Testimonial updated" : "Testimonial added",
+      description: `The testimonial has been ${testimonialIndex !== -1 ? "updated" : "added"} successfully.`
     });
 
     setIsEditing(false);
@@ -161,8 +161,8 @@ const DashboardTestimonials = () => {
     localStorage.setItem('testimonials', JSON.stringify(updatedTestimonials));
 
     toast({
-      title: "Testimonio eliminado",
-      description: "El testimonio ha sido eliminado correctamente."
+      title: "Testimonial deleted",
+      description: "The testimonial has been deleted successfully."
     });
   };
 
@@ -171,8 +171,8 @@ const DashboardTestimonials = () => {
     localStorage.setItem('testimonials', JSON.stringify(defaultTestimonials));
 
     toast({
-      title: "Testimonios restablecidos",
-      description: "Los testimonios han sido restablecidos a los valores predeterminados."
+      title: "Testimonials reset",
+      description: "The testimonials have been reset to default values."
     });
   };
 
@@ -181,54 +181,54 @@ const DashboardTestimonials = () => {
       <CardHeader>
         <div className="flex justify-between items-center">
           <div>
-            <CardTitle>Testimonios de Clientes</CardTitle>
+            <CardTitle>Client Testimonials</CardTitle>
             <CardDescription>
-              Gestiona los testimonios de clientes que se muestran en la página de inicio
+              Manage client testimonials displayed on the homepage
             </CardDescription>
           </div>
           <div className="flex gap-2">
             <Dialog open={isEditing} onOpenChange={setIsEditing}>
               <DialogTrigger asChild>
                 <Button variant="outline" size="sm" onClick={handleAddTestimonial}>
-                  <Plus className="h-4 w-4 mr-2" /> Añadir Testimonio
+                  <Plus className="h-4 w-4 mr-2" /> Add Testimonial
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-md">
                 <DialogHeader>
                   <DialogTitle>
-                    {formData.id ? "Editar Testimonio" : "Añadir Nuevo Testimonio"}
+                    {formData.id ? "Edit Testimonial" : "Add New Testimonial"}
                   </DialogTitle>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="name">Nombre</Label>
+                    <Label htmlFor="name">Name</Label>
                     <Input 
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Nombre del cliente"
+                      placeholder="Client name"
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="role">Rol o Profesión</Label>
+                    <Label htmlFor="role">Role or Profession</Label>
                     <Input 
                       id="role"
                       name="role"
                       value={formData.role}
                       onChange={handleInputChange}
-                      placeholder="Ej: Propietario, Inversor, etc."
+                      placeholder="E.g. Property Owner, Investor, etc."
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="image">Fotografía</Label>
+                    <Label htmlFor="image">Photo</Label>
                     <div className="flex items-center gap-4">
                       <label 
                         htmlFor="testimonial-image" 
                         className="cursor-pointer bg-gray-100 hover:bg-gray-200 transition-colors px-4 py-2 rounded flex items-center gap-2"
                       >
                         <Upload className="h-4 w-4" />
-                        Subir Imagen
+                        Upload Image
                       </label>
                       <Input 
                         id="testimonial-image"
@@ -238,7 +238,7 @@ const DashboardTestimonials = () => {
                         className="hidden"
                       />
                       <Input 
-                        placeholder="O pega URL de imagen"
+                        placeholder="Or paste image URL"
                         name="image"
                         value={formData.image}
                         onChange={handleInputChange}
@@ -249,26 +249,26 @@ const DashboardTestimonials = () => {
                       <div className="mt-2">
                         <img 
                           src={formData.image}
-                          alt="Vista previa"
+                          alt="Preview"
                           className="h-32 w-32 object-cover rounded-full mx-auto"
                         />
                       </div>
                     )}
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="quote">Testimonio</Label>
+                    <Label htmlFor="quote">Testimonial</Label>
                     <textarea 
                       id="quote"
                       name="quote"
                       rows={4}
                       value={formData.quote}
                       onChange={handleInputChange}
-                      placeholder="Testimonio del cliente"
+                      placeholder="Client testimonial"
                       className="w-full p-2 border rounded resize-none"
                     ></textarea>
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="rating">Valoración (1-5)</Label>
+                    <Label htmlFor="rating">Rating (1-5)</Label>
                     <div className="flex items-center space-x-1">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
@@ -289,14 +289,14 @@ const DashboardTestimonials = () => {
                 </div>
                 <DialogFooter>
                   <DialogClose asChild>
-                    <Button variant="outline">Cancelar</Button>
+                    <Button variant="outline">Cancel</Button>
                   </DialogClose>
-                  <Button onClick={handleSaveTestimonial}>{formData.id ? "Guardar Cambios" : "Añadir"}</Button>
+                  <Button onClick={handleSaveTestimonial}>{formData.id ? "Save Changes" : "Add"}</Button>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
             <Button variant="outline" size="sm" onClick={handleReset} className="text-red-500 hover:text-red-700">
-              Restablecer
+              Reset
             </Button>
           </div>
         </div>
