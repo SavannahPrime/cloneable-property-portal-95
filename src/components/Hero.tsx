@@ -1,6 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Search } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const propertyTypes = [
   { id: 'villa', label: 'Villa' },
@@ -33,6 +35,31 @@ const priceRanges = [
 ];
 
 const Hero = () => {
+  const navigate = useNavigate();
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedPriceRange, setSelectedPriceRange] = useState("");
+
+  const handleSearch = () => {
+    // Construir los parámetros de búsqueda
+    const params = new URLSearchParams();
+    
+    if (selectedType) {
+      params.append('type', selectedType);
+    }
+    
+    if (selectedLocation) {
+      params.append('location', selectedLocation);
+    }
+    
+    if (selectedPriceRange) {
+      params.append('price', selectedPriceRange);
+    }
+
+    // Navegar a la página de propiedades con los filtros
+    navigate(`/properties?${params.toString()}`);
+  };
+
   return (
     <div className="relative h-[600px] lg:h-[700px] bg-coastal-600 overflow-hidden">
       {/* Hero background image */}
@@ -59,7 +86,11 @@ const Hero = () => {
           <div className="bg-white p-4 rounded-lg shadow-lg">
             <div className="flex flex-col md:flex-row md:items-center gap-4">
               <div className="flex-1">
-                <select className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500">
+                <select 
+                  className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500"
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value)}
+                >
                   <option value="">Tipo de Propiedad</option>
                   {propertyTypes.map(type => (
                     <option key={type.id} value={type.id}>{type.label}</option>
@@ -67,7 +98,11 @@ const Hero = () => {
                 </select>
               </div>
               <div className="flex-1">
-                <select className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500">
+                <select 
+                  className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500"
+                  value={selectedLocation}
+                  onChange={(e) => setSelectedLocation(e.target.value)}
+                >
                   <option value="">Ubicación</option>
                   {locations.map(location => (
                     <option key={location.id} value={location.id}>{location.label}</option>
@@ -75,7 +110,11 @@ const Hero = () => {
                 </select>
               </div>
               <div className="flex-1">
-                <select className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500">
+                <select 
+                  className="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-coastal-500"
+                  value={selectedPriceRange}
+                  onChange={(e) => setSelectedPriceRange(e.target.value)}
+                >
                   <option value="">Rango de Precio</option>
                   {priceRanges.map(range => (
                     <option key={range.id} value={range.id}>{range.label}</option>
@@ -83,7 +122,10 @@ const Hero = () => {
                 </select>
               </div>
               <div>
-                <Button className="w-full md:w-auto bg-coastal-600 hover:bg-coastal-700">
+                <Button 
+                  className="w-full md:w-auto bg-coastal-600 hover:bg-coastal-700" 
+                  onClick={handleSearch}
+                >
                   <Search className="h-5 w-5 mr-2" />
                   Buscar
                 </Button>
