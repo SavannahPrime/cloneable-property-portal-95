@@ -1,13 +1,14 @@
 
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LayoutDashboard, Home, Building, Users, Phone, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Home, Building, Users, Phone, Settings, LogOut, FooterIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import DashboardHome from '@/components/dashboard/DashboardHome';
 import DashboardProperties from '@/components/dashboard/DashboardProperties';
 import DashboardAbout from '@/components/dashboard/DashboardAbout';
 import DashboardContact from '@/components/dashboard/DashboardContact';
 import DashboardSettings from '@/components/dashboard/DashboardSettings';
+import DashboardFooter from '@/components/dashboard/DashboardFooter';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -65,6 +66,15 @@ const DashboardPage = () => {
               </Button>
               
               <Button 
+                variant={activeTab === "footer" ? "default" : "ghost"} 
+                className="w-full justify-start"
+                onClick={() => setActiveTab("footer")}
+              >
+                <FooterIcon className="h-5 w-5 mr-3" />
+                Pie de Página
+              </Button>
+              
+              <Button 
                 variant={activeTab === "ajustes" ? "default" : "ghost"} 
                 className="w-full justify-start"
                 onClick={() => setActiveTab("ajustes")}
@@ -91,6 +101,7 @@ const DashboardPage = () => {
             {activeTab === "propiedades" && <DashboardProperties />}
             {activeTab === "nosotros" && <DashboardAbout />}
             {activeTab === "contacto" && <DashboardContact />}
+            {activeTab === "footer" && <DashboardFooter />}
             {activeTab === "ajustes" && <DashboardSettings />}
           </div>
         </div>

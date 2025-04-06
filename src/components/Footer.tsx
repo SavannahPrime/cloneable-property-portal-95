@@ -125,7 +125,6 @@ const Footer = () => {
           <div className="mt-4 flex justify-center space-x-4 text-sm">
             <Link to="/privacy" className="text-gray-400 hover:text-white">Política de Privacidad</Link>
             <Link to="/terms" className="text-gray-400 hover:text-white">Términos de Servicio</Link>
-            <Link to="/sitemap" className="text-gray-400 hover:text-white">Mapa del Sitio</Link>
           </div>
         </div>
       </div>
