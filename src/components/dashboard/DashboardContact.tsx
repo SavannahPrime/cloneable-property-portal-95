@@ -6,13 +6,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Edit, MapPin, Phone, Mail, Save, Eye, Trash2 } from "lucide-react";
+import { Edit, MapPin, Phone, Mail, Save, Eye, Trash2, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const DashboardContact = () => {
   const { toast } = useToast();
   const [isEditingContact, setIsEditingContact] = useState(false);
+  const [isEditingHours, setIsEditingHours] = useState(false);
 
   const handleSaveChanges = () => {
     toast({
@@ -20,6 +21,14 @@ const DashboardContact = () => {
       description: "La información de contacto ha sido actualizada correctamente.",
     });
     setIsEditingContact(false);
+  };
+
+  const handleSaveHours = () => {
+    toast({
+      title: "Horario actualizado",
+      description: "El horario de oficina ha sido actualizado correctamente.",
+    });
+    setIsEditingHours(false);
   };
 
   return (
@@ -148,6 +157,116 @@ const DashboardContact = () => {
                     <p className="text-gray-500">Vista previa del mapa</p>
                   </div>
                 </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Horario de Oficina */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle>Horario de Oficina</CardTitle>
+              <CardDescription>
+                Gestiona los horarios de atención al cliente
+              </CardDescription>
+            </div>
+            <Button 
+              variant={isEditingHours ? "ghost" : "outline"} 
+              onClick={() => setIsEditingHours(!isEditingHours)}
+            >
+              {isEditingHours ? "Cancelar" : <><Edit className="h-4 w-4 mr-2" /> Editar</>}
+            </Button>
+          </CardHeader>
+          <CardContent>
+            {isEditingHours ? (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="mondayFridayLabel">Etiqueta Lunes - Viernes</Label>
+                    <Input 
+                      id="mondayFridayLabel" 
+                      defaultValue="Lunes - Viernes" 
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="mondayFridayHours">Horario Lunes - Viernes</Label>
+                    <Input 
+                      id="mondayFridayHours" 
+                      defaultValue="9:00 AM - 6:00 PM" 
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="saturdayLabel">Etiqueta Sábado</Label>
+                    <Input 
+                      id="saturdayLabel" 
+                      defaultValue="Sábado" 
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="saturdayHours">Horario Sábado</Label>
+                    <Input 
+                      id="saturdayHours" 
+                      defaultValue="10:00 AM - 4:00 PM" 
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="sundayLabel">Etiqueta Domingo</Label>
+                    <Input 
+                      id="sundayLabel" 
+                      defaultValue="Domingo" 
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="sundayHours">Horario Domingo</Label>
+                    <Input 
+                      id="sundayHours" 
+                      defaultValue="Cerrado" 
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex justify-end">
+                  <Button onClick={handleSaveHours}>
+                    <Save className="h-4 w-4 mr-2" />
+                    Guardar Horarios
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <div className="flex items-start space-x-3 mb-4">
+                  <Clock className="h-5 w-5 text-coastal-600 mt-0.5" />
+                  <div>
+                    <p className="font-medium">Horario Actual:</p>
+                  </div>
+                </div>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex justify-between">
+                    <span>Lunes - Viernes</span>
+                    <span>9:00 AM - 6:00 PM</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>Sábado</span>
+                    <span>10:00 AM - 4:00 PM</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>Domingo</span>
+                    <span>Cerrado</span>
+                  </li>
+                </ul>
               </div>
             )}
           </CardContent>
