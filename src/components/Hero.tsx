@@ -46,17 +46,21 @@ const Hero = () => {
     
     if (selectedType) {
       params.append('type', selectedType);
+      console.log("Buscando tipo:", selectedType);
     }
     
     if (selectedLocation) {
       params.append('location', selectedLocation);
+      console.log("Buscando ubicación:", selectedLocation);
     }
     
     if (selectedPriceRange) {
       params.append('price', selectedPriceRange);
+      console.log("Buscando rango de precio:", selectedPriceRange);
     }
 
     // Navegar a la página de propiedades con los filtros
+    console.log("Navegando a:", `/properties?${params.toString()}`);
     navigate(`/properties?${params.toString()}`);
   };
 

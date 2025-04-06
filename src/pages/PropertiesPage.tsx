@@ -104,6 +104,16 @@ const propertyTypes = [
   { id: 'local', label: 'Local Comercial' }
 ];
 
+// Lista de ubicaciones
+const locations = [
+  { id: 'malibu', label: 'Malibu' },
+  { id: 'miami', label: 'Miami' },
+  { id: 'hamptons', label: 'Los Hamptons' },
+  { id: 'newportBeach', label: 'Newport Beach' },
+  { id: 'sanDiego', label: 'San Diego' },
+  { id: 'outerBanks', label: 'Outer Banks' }
+];
+
 const PropertiesPage = () => {
   const [searchParams] = useSearchParams();
   const [gridView, setGridView] = useState(true);
@@ -134,10 +144,13 @@ const PropertiesPage = () => {
       }
     }
     
-    // Aplicar estado (venta/alquiler) basado en la ubicación si existe
+    // Aplicar ubicación si existe en la URL
     if (locationParam) {
-      // Aquí podríamos aplicar alguna lógica específica si es necesario
-      console.log("Filtrar por ubicación:", locationParam);
+      const foundLocation = locations.find(loc => loc.id === locationParam);
+      if (foundLocation) {
+        console.log("Filtrar por ubicación:", foundLocation.label);
+        // Se podría agregar más lógica de filtrado por ubicación si fuera necesario
+      }
     }
     
     // Aplicar rango de precios si existe en la URL
@@ -158,9 +171,15 @@ const PropertiesPage = () => {
   useEffect(() => {
     let result = [...properties];
     
+    console.log("Filtrando con:", filters);
+    
     // Filtrar por tipo
     if (filters.type) {
-      result = result.filter(property => property.type === filters.type);
+      console.log(`Filtrando por tipo: "${filters.type}"`);
+      result = result.filter(property => {
+        const matches = property.type.toLowerCase() === filters.type.toLowerCase();
+        return matches;
+      });
     }
     
     // Filtrar por estado (venta/alquiler)
@@ -184,6 +203,8 @@ const PropertiesPage = () => {
     result = result.filter(property => 
       property.price >= priceRange[0] && property.price <= priceRange[1]
     );
+    
+    console.log("Propiedades filtradas:", result.length);
     
     // Ordenar propiedades
     if (sortBy === 'price-asc') {
